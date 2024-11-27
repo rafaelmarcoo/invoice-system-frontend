@@ -5,25 +5,25 @@ export const ClientForm = () => {
 
             <form>
                 <label>Name</label>
-                <input type="text" placeholder="Company Name..."/>
+                <input type="text" placeholder="Company Name..." required/>
 
                 <label>Address</label>
-                <input type="text" placeholder="Company Address..."/>
+                <input type="text" placeholder="Company Address..." required/>
 
                 <label>City</label>
-                <input type="text" placeholder="Company City"/>
+                <input type="text" placeholder="Company City..." required/>
 
                 <label>ZIP</label>
-                <input type="text" placeholder="Company Zip"/>
+                <input type="text" id="company-zip" name="companyZip" placeholder="Company Zip" required/>
 
                 <label>Phone</label>
-                <input type="number" placeholder="Phone..."/>
+                <input type="tel" placeholder="Phone..." required/>
 
                 <label>Email</label>
-                <input type="text" placeholder="Email..."/>
+                <input type="email" placeholder="Email..." required/>
 
                 <label>Invoice Code</label>
-                <input type="text" placeholder="Invoice Code..."/>
+                <input type="text" placeholder="Invoice Code..." required/>
 
                 <br/><br/>
                 <button>Add Client</button>
