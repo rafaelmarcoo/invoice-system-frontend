@@ -8,9 +8,23 @@
   box-sizing: border-box;
 }
 
+/* Styling from index.css pasted here*/
 body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   background-color: var(--primary-color);
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/****************************************************************************/
 
 /* Main Navbar Styling */
 .navbar {
@@ -23,10 +37,11 @@ body {
 .navbar a {
   color: var(--tertiary-color);
 }
-/******************/
+/****************************************************************************/
 
-/* Main Navbar Styling */
+/* ManageInvoicePages NavBar Styling */
 .manage-invoices-navbar {
   display: flex;
   justify-content: space-evenly;
 }
+/****************************************************************************/
