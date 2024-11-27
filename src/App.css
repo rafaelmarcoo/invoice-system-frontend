@@ -12,7 +12,7 @@ body {
   background-color: var(--primary-color);
 }
 
-/* NavBar Styling */
+/* Main Navbar Styling */
 .navbar {
   background-color: var(--secondary-color);
   display: flex;
@@ -24,3 +24,9 @@ body {
   color: var(--tertiary-color);
 }
 /******************/
+
+/* Main Navbar Styling */
+.manage-invoices-navbar {
+  display: flex;
+  justify-content: space-evenly;
+}
