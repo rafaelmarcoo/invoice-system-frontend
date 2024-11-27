@@ -1,10 +1,10 @@
-import { Form } from "./Form";
+import { CompanyForm } from "./CompanyForm";
 
 export const EditCompanyPage = () => {
     return (
         <div className="edit-company">
             <h3>Edit Company Details</h3>
-            <Form />
+            <CompanyForm />
         </div> 
     );
 }

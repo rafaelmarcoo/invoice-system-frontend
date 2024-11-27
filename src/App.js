@@ -12,13 +12,13 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        <Routes>
-          <Route path="/editcompany" element={<EditCompanyPage />}></Route>
-          <Route path="/clientlist" element={<ClientListPage />}></Route>
-          <Route path="/manageinvoices" element={<ManageInvoicesPage />}></Route>
-          <Route path="/gstexpenses" element={<GSTExpensesPage />}></Route>
-          <Route path="/taxsummary" element={<TaxSummaryPage />}></Route>
-        </Routes>
+          <Routes>
+            <Route path="/editcompany" element={<EditCompanyPage />}></Route>
+            <Route path="/clientlist" element={<ClientListPage />}></Route>
+            <Route path="/manageinvoices" element={<ManageInvoicesPage />}></Route>
+            <Route path="/gstexpenses" element={<GSTExpensesPage />}></Route>
+            <Route path="/taxsummary" element={<TaxSummaryPage />}></Route>
+          </Routes>
       </Router>
     </div>
   );

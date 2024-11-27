@@ -1,26 +1,26 @@
-export const Form = () => {
+export const CompanyForm = () => {
     return (
         <div className="edit-company-form">
             <form>
-                <p>Company Name</p>
+                <label>Company Name</label>
                 <input type="text" placeholder="Company Name..."/>
 
-                <p>GST Number</p>
+                <label>GST Number</label>
                 <input type="text" placeholder="Email..."/>
 
-                <p>Company Address</p>
+                <label>Company Address</label>
                 <input type="text" placeholder="Company Address..."/>
 
-                <p>Company City</p>
+                <label>Company City</label>
                 <input type="text" placeholder="Company City"/>
 
-                <p>Company ZIP</p>
+                <label>Company ZIP</label>
                 <input type="text" placeholder="Company Zip"/>
 
-                <p>Company Phone</p>
+                <label>Company Phone</label>
                 <input type="number" placeholder="Phone..."/>
 
-                <p>Company Email</p>
+                <label>Company Email</label>
                 <input type="text" placeholder="Email..."/>
 
                 <br/><br/>
