@@ -6,6 +6,7 @@ export const ManageInvoicesNavbar = () => {
             <Link>Sent Invoices</Link>
             <Link>Paid Invoices</Link>
             <Link>Overdue Invoices</Link>
+            {/*Either separate pages orrrr separate components using states*/}
         </div>
     )
 };
