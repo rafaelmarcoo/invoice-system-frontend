@@ -3,25 +3,25 @@ export const CompanyForm = () => {
         <div className="edit-company-form">
             <form>
                 <label>Company Name</label>
-                <input type="text" placeholder="Company Name..."/>
+                <input type="text" placeholder="Company Name..." required/>
 
                 <label>GST Number</label>
-                <input type="text" placeholder="Email..."/>
+                <input type="text" placeholder="Email..." required/>
 
                 <label>Company Address</label>
-                <input type="text" placeholder="Company Address..."/>
+                <input type="text" placeholder="Company Address..." required/>
 
                 <label>Company City</label>
-                <input type="text" placeholder="Company City"/>
+                <input type="text" placeholder="Company City" required/>
 
                 <label>Company ZIP</label>
-                <input type="text" placeholder="Company Zip"/>
+                <input type="text" id="company-zip" name="companyZip" placeholder="Company Zip" required/>
 
                 <label>Company Phone</label>
-                <input type="number" placeholder="Phone..."/>
+                <input type="tel" placeholder="Phone..." required/>
 
                 <label>Company Email</label>
-                <input type="text" placeholder="Email..."/>
+                <input type="email" placeholder="Email..." required/>
 
                 <br/><br/>
                 <button>Save Changes</button>
