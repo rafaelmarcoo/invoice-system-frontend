@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
-
 export const ManageInvoicesNavbar = () => {
     return (
         <div className="manage-invoices-navbar">
-            <Link to="/manageinvoices/sent">Sent Invoices</Link>
-            <Link>Paid Invoices</Link>
-            <Link>Overdue Invoices</Link>
+            <button>Sent Invoices</button>
+            <button>Paid Invoices</button>
+            <button>Overdue Invoices</button>
             {/*Either separate pages orrrr separate components using states*/}
         </div>
     )
