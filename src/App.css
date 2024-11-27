@@ -39,8 +39,8 @@ code {
 }
 /****************************************************************************/
 
-/* ManageInvoicePages NavBar Styling */
-.manage-invoices-navbar {
+/* Secondary NavBar Styling */
+.secondary-navbar {
   display: flex;
   justify-content: space-evenly;
 }
