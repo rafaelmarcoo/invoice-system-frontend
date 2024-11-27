@@ -1,6 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { EditCompany } from './EditCompany/EditCompanyPage';
+import { EditCompanyPage } from './EditCompany/EditCompanyPage';
+import { ClientListPage } from './ClientList/ClientListPage';
+import { ManageInvoicesPage } from './ManageInvoices/ManageInvoicesPage';
+import { GSTExpensesPage } from './GSTExpenses/GSTExpensesPage';
+import { TaxSummaryPage } from './TaxSummary/TaxSummaryPage';
 import { Navbar } from './Navbar';
 
 function App() {
@@ -9,7 +13,11 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/editcompany" element={<EditCompany />}></Route>
+          <Route path="/editcompany" element={<EditCompanyPage />}></Route>
+          <Route path="/clientlist" element={<ClientListPage />}></Route>
+          <Route path="/manageinvoices" element={<ManageInvoicesPage />}></Route>
+          <Route path="/gstexpenses" element={<GSTExpensesPage />}></Route>
+          <Route path="/taxsummary" element={<TaxSummaryPage />}></Route>
         </Routes>
       </Router>
     </div>
