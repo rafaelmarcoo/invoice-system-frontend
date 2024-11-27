@@ -1,7 +1,7 @@
-export const SentInvoices = () => {
+export const OverdueInvoices = () => {
     return (
-        <div className="manage-invoices-sent-invoices">
-            <h3>Sent Invoices</h3>
+        <div className="manage-invoices-overdue-invoices">
+            <h3>Overdue Invoices</h3>
 
             <table>
                 <thead>
