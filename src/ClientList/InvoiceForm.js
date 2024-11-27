@@ -32,6 +32,7 @@ export const InvoiceForm = () => {
             <br/><br/>
 
             <label>Items</label>
+            <br/>
             {items.map((item) => (
                 <div key={item.id} className="item">
                     <label>Description</label>
@@ -55,6 +56,8 @@ export const InvoiceForm = () => {
 
             <button onClick={addItem}>Add Item</button>
 
+            <br/><br/>
+            <button>Add Invoice</button>
         </div>
     );
 }
