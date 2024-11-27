@@ -1,6 +1,8 @@
 export const GSTExpenseForm = () => {
     return (
         <div className="gst-expenses-addGST">
+            <h3>Add GST Expense</h3>
+
             <form>
                 <label>Expense Title (Required)</label>
                 <input type="text" placeholder="Title..." required />
