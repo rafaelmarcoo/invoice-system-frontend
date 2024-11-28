@@ -26,8 +26,18 @@ export const CompanyForm = () => {
         {/*Test*/}
         console.log(formData);
 
+        const data = {
+            Name: formData.companyName,
+            GST: formData.gstNumber,
+            Address: formData.companyAddress,
+            City: formData.companyCity,
+            Zip: formData.companyZip,
+            Phone: formData.companyPhone,
+            Email: formData.companyEmail
+        };
+
         try {
-            const response = await Axios.post("http://localhost:5000/api/company", formData);
+            const response = await Axios.put("http://localhost:5000/api/company", data);
 
             if(response.ok) {
                 alert("Company details updated!");
