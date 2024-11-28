@@ -1,6 +1,6 @@
 export const CompanyForm = () => {
     return (
-        <div className="edit-company-form">
+        <div className="form-container">
             <form>
                 <label>Company Name</label>
                 <input type="text" placeholder="Company Name..." required/>
