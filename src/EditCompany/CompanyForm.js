@@ -23,7 +23,21 @@ export const CompanyForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        {/*Test*/}
         console.log(formData);
+
+        try {
+            const response = await Axios.post("http://localhost:5000/api/company", formData);
+
+            if(response.ok) {
+                alert("Company details updated!");
+            } else {
+                const err = await response.json();
+                alert(`Error: ${err.message}`);
+            }
+        } catch(error) {
+            alert("Error");
+        }
     }
 
     return (
