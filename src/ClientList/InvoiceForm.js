@@ -2,6 +2,11 @@ import { useState } from "react";
 
 export const InvoiceForm = () => {
     const [items, setItems] = useState([]);
+    const [isRecurring, setIsRecurring] = useState("no");
+
+    const handleRecurringChange = (event) => {
+        setIsRecurring(event.target.value);
+    }
 
     const addItem = () => {
         const item = {
@@ -26,8 +31,14 @@ export const InvoiceForm = () => {
             <select></select>
             {/* Will have to connect this to database to show all available clients */}
 
-            <label>Day of Month to Send Invoice</label>
+            <label>Date</label>
             <input type="date"></input>
+
+            <label>Is recurring?</label>
+            <select value={isRecurring} onChange={handleRecurringChange}>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
 
             <br/><br/>
 
