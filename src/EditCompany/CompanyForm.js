@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Axios } from "axios";
+import Axios from 'axios';
 
 export const CompanyForm = () => {
     const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ export const CompanyForm = () => {
 
         const data = {
             Name: formData.companyName,
-            GST: formData.gstNumber,
+            GST_Number: formData.gstNumber,
             Address: formData.companyAddress,
             City: formData.companyCity,
             Zip: formData.companyZip,
@@ -37,16 +37,15 @@ export const CompanyForm = () => {
         };
 
         try {
-            const response = await Axios.put("http://localhost:5000/api/company", data);
+            const response = await Axios.put("http://localhost:5041/api/company", data);
 
-            if(response.ok) {
+            if(response.status === 200) {
                 alert("Company details updated!");
             } else {
-                const err = await response.json();
-                alert(`Error: ${err.message}`);
+                alert("Failed to update details!");
             }
         } catch(error) {
-            alert("Error");
+            alert("Error: " + error.message);
         }
     }
 
