@@ -37,8 +37,8 @@ export const ClientTable = () => {
                         clients.map((client, index) => (
                             <tr key={index}>
                                 <td>{client.name}</td>
-                                <td>{client.company_code}</td>
-                                <td>{client.gst_number}</td>
+                                <td>{client.companyCode}</td>
+                                <td>{client.gstNumber}</td>
                                 <td>{client.email}</td>
                                 <td>{client.phone}</td>
                                 <td>{client.address}</td>

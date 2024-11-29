@@ -28,7 +28,7 @@ export const CompanyForm = () => {
 
         const data = {
             Name: formData.companyName,
-            GST_Number: formData.gstNumber,
+            GstNumber: formData.gstNumber,
             Address: formData.companyAddress,
             City: formData.companyCity,
             Zip: formData.companyZip,
