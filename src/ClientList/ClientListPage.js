@@ -13,8 +13,6 @@ export const ClientListPage = () => {
 
     return  (
         <div className="client-list">
-            <h1>THIS IS CLIENT LIST PAGE</h1>
-
             <ClientTable />
             <br/><br/>
 

@@ -3,13 +3,13 @@ import Axios from 'axios';
 
 export const CompanyForm = () => {
     const [formData, setFormData] = useState({
-        companyName: "",
-        gstNumber: "",
-        companyAddress: "",
-        companyCity: "",
-        companyZip: "",
-        companyPhone: "",
-        companyEmail: ""
+        Name: "",
+        GstNumber: "",
+        Address: "",
+        City: "",
+        Zip: "",
+        Phone: "",
+        Email: ""
     });
 
     const handleChange = (event) => {
@@ -26,18 +26,8 @@ export const CompanyForm = () => {
         {/*Test*/}
         console.log(formData);
 
-        const data = {
-            Name: formData.companyName,
-            GstNumber: formData.gstNumber,
-            Address: formData.companyAddress,
-            City: formData.companyCity,
-            Zip: formData.companyZip,
-            Phone: formData.companyPhone,
-            Email: formData.companyEmail
-        };
-
         try {
-            const response = await Axios.put("http://localhost:5041/api/company", data);
+            const response = await Axios.put("http://localhost:5041/api/company", formData);
 
             if(response.status === 200) {
                 alert("Company details updated!");
@@ -55,8 +45,8 @@ export const CompanyForm = () => {
                 <label>Company Name</label>
                 <input 
                     type="text"
-                    name="companyName"
-                    value={formData.companyName}
+                    name="Name"
+                    value={formData.Name}
                     onChange={handleChange} 
                     placeholder="Company Name..." 
                     required
@@ -65,8 +55,8 @@ export const CompanyForm = () => {
                 <label>GST Number</label>
                 <input 
                     type="text" 
-                    name="gstNumber"
-                    value={formData.gstNumber}
+                    name="GstNumber"
+                    value={formData.GstNumber}
                     onChange={handleChange}
                     placeholder="Email..." 
                     required
@@ -75,8 +65,8 @@ export const CompanyForm = () => {
                 <label>Company Address</label>
                 <input 
                     type="text" 
-                    name="companyAddress"
-                    value={formData.companyAddress}
+                    name="Address"
+                    value={formData.Address}
                     onChange={handleChange}
                     placeholder="Company Address..." 
                     required
@@ -85,8 +75,8 @@ export const CompanyForm = () => {
                 <label>Company City</label>
                 <input 
                     type="text" 
-                    name="companyCity"
-                    value={formData.companyCity}
+                    name="City"
+                    value={formData.City}
                     onChange={handleChange}
                     placeholder="Company City" 
                     required
@@ -95,8 +85,8 @@ export const CompanyForm = () => {
                 <label>Company ZIP</label>
                 <input 
                     type="text" 
-                    name="companyZip" 
-                    value={formData.companyZip}
+                    name="Zip" 
+                    value={formData.Zip}
                     onChange={handleChange}
                     placeholder="Company Zip" 
                     required
@@ -105,8 +95,8 @@ export const CompanyForm = () => {
                 <label>Company Phone</label>
                 <input 
                     type="tel" 
-                    name="companyPhone"
-                    value={formData.companyPhone}
+                    name="Phone"
+                    value={formData.Phone}
                     onChange={handleChange}
                     placeholder="Phone..." 
                     required
@@ -115,8 +105,8 @@ export const CompanyForm = () => {
                 <label>Company Email</label>
                 <input 
                     type="email" 
-                    name="companyEmail"
-                    value={formData.companyEmail}
+                    name="Email"
+                    value={formData.Email}
                     onChange={handleChange}
                     placeholder="Email..." 
                     required
