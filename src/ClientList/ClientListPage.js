@@ -1,28 +1,27 @@
 import { useState } from "react";
 import { ClientForm } from "./ClientForm";
 import { InvoiceForm } from "./InvoiceForm";
+import { ClientTable } from "./ClientTable";
+import { ClientNavbar } from "./ClientNavbar";
 
 export const ClientListPage = () => {
-    const [clientForm, showClientForm] = useState(false);
-    const [invoiceForm, showInvoiceForm] = useState(false);
+    const [active, setActive] = useState("client-form");
 
-    const toggleClientForm = () => {
-        showClientForm(!clientForm);
-    }
-
-    const toggleInvoiceForm = () => {
-        showInvoiceForm(!invoiceForm);
+    const toggle = (text) => {
+        setActive(text);
     }
 
     return  (
         <div className="client-list">
             <h1>THIS IS CLIENT LIST PAGE</h1>
 
-            <button onClick={toggleClientForm}>Add Client</button>
-            <button onClick={toggleInvoiceForm}>Make Invoice</button>
+            <ClientTable />
+            <br/><br/>
 
-            {clientForm && <ClientForm />}
-            {invoiceForm && <InvoiceForm />}
+            <ClientNavbar toggle={toggle}/>
+
+            {active === "client-form" && <ClientForm />}
+            {active === "client-invoice" && <InvoiceForm />}
         </div>
     );
 }
