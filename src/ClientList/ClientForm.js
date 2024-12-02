@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Axios from 'axios';
 
-export const ClientForm = () => {
+export const ClientForm = ({ addClient }) => {
     const [formData, setFormData] = useState({
         CompanyCode: "",
         GstNumber: "",
@@ -21,22 +21,38 @@ export const ClientForm = () => {
         });
     };
 
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+
+    //     console.log(formData);
+        
+    //     try {
+    //         const response = await Axios.post("http://localhost:5041/api/client", formData)
+
+    //         if(response.status === 200) {
+    //             alert("Client added!");
+    //         } else {
+    //             alert("Failed to add client!");
+    //         }
+    //     } catch(error) {
+    //         alert("Error: " + error.message)
+    //     }
+    // }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log(formData);
-        
-        try {
-            const response = await Axios.post("http://localhost:5041/api/client", formData)
-
-            if(response.status === 200) {
-                alert("Client added!");
-            } else {
-                alert("Failed to add client!");
-            }
-        } catch(error) {
-            alert("Error: " + error.message)
-        }
+        await addClient(formData);
+        setFormData({
+            CompanyCode: "",
+            GstNumber: "",
+            Name: "",
+            Address: "",
+            City: "",
+            Zip: "",
+            Phone: "",
+            Email: "",
+        })
     }
 
     return (

@@ -1,21 +1,21 @@
-import Axios from "axios";
-import { useEffect, useState } from "react";
+// import Axios from "axios";
+// import { useEffect, useState } from "react";
 
-export const ClientTable = () => {
-    const [clients, setClients] = useState([]);
+export const ClientTable = ({ clients }) => {
+    // const [clients, setClients] = useState([]);
 
-    useEffect(() => {
-        const retrieveClients = async () => {
-            try {
-                const response = await Axios.get("http://localhost:5041/api/client");
-                setClients(response.data);
-            } catch(error) {
-                alert("Error: " + error.message);
-            }
-        };
+    // useEffect(() => {
+    //     const retrieveClients = async () => {
+    //         try {
+    //             const response = await Axios.get("http://localhost:5041/api/client");
+    //             setClients(response.data);
+    //         } catch(error) {
+    //             alert("Error: " + error.message);
+    //         }
+    //     };
 
-        retrieveClients();
-    }, []);
+    //     retrieveClients();
+    // }, []);
 
     return (
         <div className="client-list-table">
