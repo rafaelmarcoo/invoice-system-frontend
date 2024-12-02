@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const ClientForm = ({ addClient }) => {
+export const EditClient = ({ clients }) => {
     const [formData, setFormData] = useState({
         CompanyCode: "",
         GstNumber: "",
@@ -20,27 +20,47 @@ export const ClientForm = ({ addClient }) => {
         });
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const [selectedClient, setSelectedClient] = useState("");
+    const handleClientChange = (event) => {
+        const selectedCode = event.target.value
+        setSelectedClient(selectedCode);
 
-        await addClient(formData);
+        const clientData = clients.find(client => client.companyCode === selectedCode);
+
         setFormData({
-            CompanyCode: "",
-            GstNumber: "",
-            Name: "",
-            Address: "",
-            City: "",
-            Zip: "",
-            Phone: "",
-            Email: "",
-        })
-    }
+            CompanyCode: clientData.companyCode,
+            GstNumber: clientData.gstNumber,
+            Name: clientData.name,
+            Address: clientData.address,
+            City: clientData.city,
+            Zip: clientData.zip,
+            Phone: clientData.phone,
+            Email: clientData.email,
+        }); 
+    };
 
     return (
-        <div className="client-list-clientform">
-            <h3>ClientForm</h3>
+        <div>
+            <h3>Edit Client</h3>
 
-            <form onSubmit={handleSubmit}>
+            <label>Client</label>
+            <select 
+                className="drop-down" 
+                name="clients" 
+                id="clients" 
+                onChange={handleClientChange}
+                value={selectedClient}
+            >
+                {clients.length > 0 ? (
+                    clients.map((client, index) => (
+                        <option key={index} value={client.companyCode}>
+                            {client.name}
+                        </option>
+                    )
+                )) : (<option>NO CLIENTS</option>)}
+            </select>
+
+            <form>
                 <label>Name</label>
                 <input 
                     type="text"
@@ -124,6 +144,7 @@ export const ClientForm = ({ addClient }) => {
                 <br/><br/>
                 <button>Add Client</button>
             </form>
+
         </div>
-    )
+    );
 }

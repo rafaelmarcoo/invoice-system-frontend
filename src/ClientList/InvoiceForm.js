@@ -37,7 +37,6 @@ export const InvoiceForm = ({ clients }) => {
                     )
                 )) : (<option>NO CLIENTS</option>)}
             </select>
-            {/* Will have to connect this to database to show all available clients */}
 
             <br/><br/>
             

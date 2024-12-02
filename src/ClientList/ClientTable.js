@@ -1,22 +1,4 @@
-// import Axios from "axios";
-// import { useEffect, useState } from "react";
-
 export const ClientTable = ({ clients }) => {
-    // const [clients, setClients] = useState([]);
-
-    // useEffect(() => {
-    //     const retrieveClients = async () => {
-    //         try {
-    //             const response = await Axios.get("http://localhost:5041/api/client");
-    //             setClients(response.data);
-    //         } catch(error) {
-    //             alert("Error: " + error.message);
-    //         }
-    //     };
-
-    //     retrieveClients();
-    // }, []);
-
     return (
         <div className="client-list-table">
             <h3>Client List</h3>
@@ -29,7 +11,6 @@ export const ClientTable = ({ clients }) => {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Address</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +23,6 @@ export const ClientTable = ({ clients }) => {
                                 <td>{client.email}</td>
                                 <td>{client.phone}</td>
                                 <td>{client.address}</td>
-                                <td><button key={index}>Action</button></td>
                             </tr>
                         )
 

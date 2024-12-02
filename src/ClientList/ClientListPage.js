@@ -4,6 +4,7 @@ import { ClientForm } from "./ClientForm";
 import { InvoiceForm } from "./InvoiceForm";
 import { ClientTable } from "./ClientTable";
 import { ClientNavbar } from "./ClientNavbar";
+import { EditClient } from "./EditClient";
 
 export const ClientListPage = () => {
     
@@ -50,6 +51,7 @@ export const ClientListPage = () => {
 
             {active === "client-form" && <ClientForm addClient={ addClient }/>}
             {active === "client-invoice" && <InvoiceForm clients={ clients }/>}
+            {active === "client-edit" && <EditClient clients={ clients }/>}
         </div>
     );
 }
