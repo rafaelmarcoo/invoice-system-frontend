@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Axios from "axios";
 
-export const EditClient = ({ clients }) => {
+export const EditClient = (props) => {
     const [formData, setFormData] = useState({
         CompanyCode: "",
         GstNumber: "",
@@ -25,7 +26,7 @@ export const EditClient = ({ clients }) => {
         const selectedCode = event.target.value
         setSelectedClient(selectedCode);
 
-        const clientData = clients.find(client => client.companyCode === selectedCode);
+        const clientData = props.clients.find(client => client.companyCode === selectedCode);
 
         setFormData({
             CompanyCode: clientData.companyCode,
@@ -39,6 +40,22 @@ export const EditClient = ({ clients }) => {
         }); 
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await props.editClient(formData);
+        setSelectedClient("");
+        setFormData({
+            CompanyCode: "",
+            GstNumber: "",
+            Name: "",
+            Address: "",
+            City: "",
+            Zip: "",
+            Phone: "",
+            Email: "",
+        }); 
+    }
+
     return (
         <div>
             <h3>Edit Client</h3>
@@ -51,8 +68,9 @@ export const EditClient = ({ clients }) => {
                 onChange={handleClientChange}
                 value={selectedClient}
             >
-                {clients.length > 0 ? (
-                    clients.map((client, index) => (
+                <option>Select a client</option>
+                {props.clients.length > 0 ? (
+                    props.clients.map((client, index) => (
                         <option key={index} value={client.companyCode}>
                             {client.name}
                         </option>
@@ -60,7 +78,9 @@ export const EditClient = ({ clients }) => {
                 )) : (<option>NO CLIENTS</option>)}
             </select>
 
-            <form>
+                <br/><br/>
+
+            <form onSubmit={handleSubmit}>
                 <label>Name</label>
                 <input 
                     type="text"

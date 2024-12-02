@@ -42,6 +42,21 @@ export const ClientListPage = () => {
         }
     }
 
+    const editClient = async (clientData) => {
+        try {
+            const response = await Axios.put("http://localhost:5041/api/client", clientData)
+
+            if(response.status == 200) {
+                alert("Client details updated!");
+                retrieveClients();
+            } else {
+                alert("Failed to update client details!");
+            }
+        } catch(error) {
+            alert("Error: 405?" + error.message);
+        }
+    }
+
     return  (
         <div className="client-list">
             <ClientTable clients={ clients }/>
@@ -51,7 +66,7 @@ export const ClientListPage = () => {
 
             {active === "client-form" && <ClientForm addClient={ addClient }/>}
             {active === "client-invoice" && <InvoiceForm clients={ clients }/>}
-            {active === "client-edit" && <EditClient clients={ clients }/>}
+            {active === "client-edit" && <EditClient clients={ clients } editClient={editClient}/>}
         </div>
     );
 }
