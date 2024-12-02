@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const InvoiceForm = () => {
+export const InvoiceForm = ({ clients }) => {
     const [items, setItems] = useState([]);
     const [isRecurring, setIsRecurring] = useState("no");
 
@@ -28,9 +28,19 @@ export const InvoiceForm = () => {
             <h3>New Invoice Form</h3>
 
             <label>Client</label>
-            <select></select>
+            <select className="drop-down" name="clients" id="clients">
+                {clients.length > 0 ? (
+                    clients.map((client, index) => (
+                        <option key={index} value={client.companyCode}>
+                            {client.name}
+                        </option>
+                    )
+                )) : (<option>NO CLIENTS</option>)}
+            </select>
             {/* Will have to connect this to database to show all available clients */}
 
+            <br/><br/>
+            
             <label>Date</label>
             <input type="date"></input>
 

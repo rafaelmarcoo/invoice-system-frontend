@@ -86,3 +86,7 @@ form button {
   border: none;
   cursor: pointer;
 }
+
+.drop-down {
+  width: 50%;
+}

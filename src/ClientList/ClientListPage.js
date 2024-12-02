@@ -49,7 +49,7 @@ export const ClientListPage = () => {
             <ClientNavbar toggle={toggle}/>
 
             {active === "client-form" && <ClientForm addClient={ addClient }/>}
-            {active === "client-invoice" && <InvoiceForm />}
+            {active === "client-invoice" && <InvoiceForm clients={ clients }/>}
         </div>
     );
 }
