@@ -11,6 +11,7 @@ export const ClientTable = ({ clients }) => {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Address</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,9 @@ export const ClientTable = ({ clients }) => {
                                 <td>{client.email}</td>
                                 <td>{client.phone}</td>
                                 <td>{client.address}</td>
+                                <td>
+                                    <button>Delete</button>
+                                </td>
                             </tr>
                         )
 
