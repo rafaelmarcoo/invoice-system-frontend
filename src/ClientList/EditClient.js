@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Axios from "axios";
 
 export const EditClient = (props) => {
     const [formData, setFormData] = useState({
@@ -21,12 +20,12 @@ export const EditClient = (props) => {
         });
     };
 
-    const [selectedClient, setSelectedClient] = useState("");
+    const [selectedClient, setSelectedClient] = useState(null);
     const handleClientChange = (event) => {
-        const selectedCode = event.target.value
-        setSelectedClient(selectedCode);
+        const selectedId = event.target.value
+        setSelectedClient(selectedId);
 
-        const clientData = props.clients.find(client => client.companyCode === selectedCode);
+        const clientData = props.clients.find(client => client.id === parseInt(selectedId));
 
         setFormData({
             CompanyCode: clientData.companyCode,
@@ -42,7 +41,7 @@ export const EditClient = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await props.editClient(formData);
+        await props.editClient(formData, selectedClient);
         setSelectedClient("");
         setFormData({
             CompanyCode: "",
@@ -71,7 +70,7 @@ export const EditClient = (props) => {
                 <option>Select a client</option>
                 {props.clients.length > 0 ? (
                     props.clients.map((client, index) => (
-                        <option key={index} value={client.companyCode}>
+                        <option key={index} value={client.id}>
                             {client.name}
                         </option>
                     )

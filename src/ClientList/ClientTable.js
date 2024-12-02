@@ -1,6 +1,6 @@
 export const ClientTable = (props) => {
-    const handleDelete = async (companyCode) => {
-        await props.deleteClient(companyCode);
+    const handleDelete = async (deleteId) => {
+        await props.deleteClient(deleteId);
     }
 
     return (
@@ -29,7 +29,7 @@ export const ClientTable = (props) => {
                                 <td>{client.phone}</td>
                                 <td>{client.address}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(client.companyCode)}>Delete</button>
+                                    <button onClick={() => handleDelete(client.id)}>Delete</button>
                                 </td>
                             </tr>
                         )

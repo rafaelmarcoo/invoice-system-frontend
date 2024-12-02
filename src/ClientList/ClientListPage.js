@@ -42,9 +42,9 @@ export const ClientListPage = () => {
         }
     }
 
-    const editClient = async (clientData) => {
+    const editClient = async (clientData, editId) => {
         try {
-            const response = await Axios.put("http://localhost:5041/api/client", clientData)
+            const response = await Axios.put(`http://localhost:5041/api/client/${editId}`, clientData)
 
             if(response.status == 200) {
                 alert("Client details updated!");
@@ -53,16 +53,16 @@ export const ClientListPage = () => {
                 alert("Failed to update client details!");
             }
         } catch(error) {
-            alert("Error: 405?" + error.message);
+            alert("Error: " + error.message);
         }
     }
 
-    const deleteClient = async (clientCode) => {
+    const deleteClient = async (clientId) => {
         const isConfirmed = window.confirm("Delete client?");
 
         if(isConfirmed) {
             try {
-                const response = await Axios.delete(`http://localhost:5041/api/client/${clientCode}`);
+                const response = await Axios.delete(`http://localhost:5041/api/client/${clientId}`);
     
                 if(response.status === 200) {
                     alert("Client deleted!");
