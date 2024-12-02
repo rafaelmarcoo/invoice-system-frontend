@@ -34,7 +34,7 @@ export const ClientTable = (props) => {
                             </tr>
                         )
 
-                    )) : (<tr><td colSpan="5">NO CLIENTS</td></tr>)}
+                    )) : (<tr><td colSpan="5">LOADING...</td></tr>)}
                 </tbody>
             </table>    
         </div>
