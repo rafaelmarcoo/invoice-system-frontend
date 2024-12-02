@@ -1,4 +1,8 @@
-export const ClientTable = ({ clients }) => {
+export const ClientTable = (props) => {
+    const handleDelete = async (companyCode) => {
+        await props.deleteClient(companyCode);
+    }
+
     return (
         <div className="client-list-table">
             <h3>Client List</h3>
@@ -15,8 +19,8 @@ export const ClientTable = ({ clients }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {clients.length > 0 ? (
-                        clients.map((client, index) => (
+                    {props.clients.length > 0 ? (
+                        props.clients.map((client, index) => (
                             <tr key={index}>
                                 <td>{client.name}</td>
                                 <td>{client.companyCode}</td>
@@ -25,7 +29,7 @@ export const ClientTable = ({ clients }) => {
                                 <td>{client.phone}</td>
                                 <td>{client.address}</td>
                                 <td>
-                                    <button>Delete</button>
+                                    <button onClick={() => handleDelete(client.companyCode)}>Delete</button>
                                 </td>
                             </tr>
                         )

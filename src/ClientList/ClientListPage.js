@@ -57,9 +57,28 @@ export const ClientListPage = () => {
         }
     }
 
+    const deleteClient = async (clientCode) => {
+        const isConfirmed = window.confirm("Delete client?");
+
+        if(isConfirmed) {
+            try {
+                const response = await Axios.delete(`http://localhost:5041/api/client/${clientCode}`);
+    
+                if(response.status === 200) {
+                    alert("Client deleted!");
+                    retrieveClients();
+                } else {
+                    alert("Failed to delete client!");
+                }
+            } catch(error) {
+                alert("Error: " + error.Message);
+            }
+        }
+    }
+
     return  (
         <div className="client-list">
-            <ClientTable clients={ clients }/>
+            <ClientTable clients={ clients } deleteClient={deleteClient}/>
             <br/><br/>
 
             <ClientNavbar toggle={toggle}/>
