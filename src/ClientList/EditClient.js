@@ -67,7 +67,7 @@ export const EditClient = (props) => {
                 onChange={handleClientChange}
                 value={selectedClient}
             >
-                <option>Select a client</option>
+                <option value="" selected disabled hidden>Select a client</option>
                 {props.clients.length > 0 ? (
                     props.clients.map((client, index) => (
                         <option key={index} value={client.id}>

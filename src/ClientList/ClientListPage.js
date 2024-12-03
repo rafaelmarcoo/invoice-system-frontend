@@ -46,7 +46,7 @@ export const ClientListPage = () => {
         try {
             const response = await Axios.put(`http://localhost:5041/api/client/${editId}`, clientData)
 
-            if(response.status == 200) {
+            if(response.status === 200) {
                 alert("Client details updated!");
                 retrieveClients();
             } else {
