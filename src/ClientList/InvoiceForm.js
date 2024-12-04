@@ -47,6 +47,13 @@ export const InvoiceForm = ({ clients }) => {
         });
     };
 
+    // const calculateTotAmt = () => {
+    //     const totAmt = formData.Items.reduce((total, item) => {
+    //         return total + (parseFloat(item.Quantity) * parseFloat(item.Price) || 0);
+    //     }, 0);
+    //     return totAmt.toFixed(2);
+    // }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
