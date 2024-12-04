@@ -21,8 +21,8 @@ export const InvoiceForm = ({ clients }) => {
         const newItem = {
             Id: formData.Items.length === 0 ? 1 : formData.Items[formData.Items.length - 1].Id + 1,
             Description: "",
-            Quantity: null,
-            Price: null,
+            Quantity: 0,
+            Price: 0,
         };
 
         setFormData({
