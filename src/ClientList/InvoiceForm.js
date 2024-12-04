@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Axios from 'axios';
 
 export const InvoiceForm = ({ clients }) => {
     const [formData, setFormData] = useState({
@@ -46,6 +47,35 @@ export const InvoiceForm = ({ clients }) => {
         });
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const updatedItems = formData.items.map((item) => ({
+            ...item,
+            price: parseFloat(item.price).toFixed(2),
+            quantity: parseFloat(item.quantity).toFixed(2)
+        }));
+
+        const updatedFormData = {
+            ...formData,
+            items: updatedItems,
+        };
+
+        console.log(updatedFormData);
+
+        try {
+            const response = await Axios.post("http://localhost:5041/api/invoice", updatedFormData);
+
+            if(response.status === 200) {
+                alert("Invoice made!");
+            } else {
+                alert("Failed to make invoice!");
+            }
+        } catch(error) {
+            alert("Error: " + error.message)
+        }
+    }
+
     return (
         <div className="invoice-form">
             <h3>New Invoice Form</h3>
@@ -57,6 +87,7 @@ export const InvoiceForm = ({ clients }) => {
                 onChange={handleChange}
                 value={formData.name}
             >
+                <option>Select a client</option>
                 {clients.length > 0 ? (
                     clients.map((client, index) => (
                         <option key={index} value={client.companyCode}>
@@ -71,10 +102,11 @@ export const InvoiceForm = ({ clients }) => {
             <label>Frequency</label>
             <select
                 className="drop-down"
-                name="frequencies"
+                name="frequency"
                 onChange={handleChange}
                 value={formData.frequency}
             >    
+                <option>Select time</option>
                 <option value="one-time">One-Time</option>
                 <option value="weekly">Weekly</option>
                 <option value="fortnightly">Fortnightly</option>
@@ -110,7 +142,7 @@ export const InvoiceForm = ({ clients }) => {
                     <label>Quantity</label>
                     <input
                         name="Quantity" 
-                        type="text"
+                        type="number"
                         value={item.quantity}
                         onChange={(e) => handleItemChange(item.id, "quantity", e.target.value)}
                     />
@@ -118,7 +150,7 @@ export const InvoiceForm = ({ clients }) => {
                     <label>Price</label>
                     <input 
                         name="Price"
-                        type="text"
+                        type="number"
                         value={item.price}
                         onChange={(e) => handleItemChange(item.id, "price", e.target.value)}
                     />
@@ -130,7 +162,8 @@ export const InvoiceForm = ({ clients }) => {
             <button onClick={addItem}>Add Item</button>
 
             <br/><br/>
-            <button>Add Invoice</button>
+            <button type="submit" onClick={handleSubmit}>Add Invoice</button>
+            
         </div>
     );
 }
