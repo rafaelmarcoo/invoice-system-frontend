@@ -3,10 +3,10 @@ import Axios from 'axios';
 
 export const InvoiceForm = ({ clients }) => {
     const [formData, setFormData] = useState({
-        name: "",
-        frequency: "",
-        dateDue: "",
-        items: [],
+        Name: "",
+        Frequency: "",
+        DateDue: "",
+        Items: [],
     });
 
     const handleChange = (event) => {
@@ -19,30 +19,30 @@ export const InvoiceForm = ({ clients }) => {
 
     const addItem = () => {
         const newItem = {
-            id: formData.items.length === 0 ? 1 : formData.items[formData.items.length - 1].id + 1,
-            description: "",
-            quantity: "",
-            price: "",
+            Id: formData.Items.length === 0 ? 1 : formData.Items[formData.Items.length - 1].Id + 1,
+            Description: "",
+            Quantity: null,
+            Price: null,
         };
 
         setFormData({
             ...formData,
-            items: [...formData.items, newItem],
+            Items: [...formData.Items, newItem],
         });
     };
 
     const removeItem = (removeId) => {
         setFormData({
             ...formData,
-            items: formData.items.filter((item) => item.id !== removeId)
+            Items: formData.Items.filter((item) => item.Id !== removeId)
         });
     };
 
     const handleItemChange = (id, field, value) => {
         setFormData({
             ...formData,
-            items: formData.items.map((item) => 
-                item.id === id ? {...item, [field]: value } : item
+            Items: formData.Items.map((item) => 
+                item.Id === id ? {...item, [field]: value } : item
             ),
         });
     };
@@ -50,15 +50,15 @@ export const InvoiceForm = ({ clients }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const updatedItems = formData.items.map((item) => ({
+        const updatedItems = formData.Items.map((item) => ({
             ...item,
-            price: parseFloat(item.price).toFixed(2),
-            quantity: parseFloat(item.quantity).toFixed(2)
+            Price: parseFloat(item.Price).toFixed(2),
+            Quantity: parseFloat(item.Quantity).toFixed(2),
         }));
 
         const updatedFormData = {
             ...formData,
-            items: updatedItems,
+            Items: updatedItems,
         };
 
         console.log(updatedFormData);
@@ -83,9 +83,9 @@ export const InvoiceForm = ({ clients }) => {
             <label>Client</label>
             <select 
                 className="drop-down" 
-                name="name" 
+                name="Name" 
                 onChange={handleChange}
-                value={formData.name}
+                value={formData.Name}
             >
                 <option>Select a client</option>
                 {clients.length > 0 ? (
@@ -102,9 +102,9 @@ export const InvoiceForm = ({ clients }) => {
             <label>Frequency</label>
             <select
                 className="drop-down"
-                name="frequency"
+                name="Frequency"
                 onChange={handleChange}
-                value={formData.frequency}
+                value={formData.Frequency}
             >    
                 <option>Select time</option>
                 <option value="one-time">One-Time</option>
@@ -118,9 +118,9 @@ export const InvoiceForm = ({ clients }) => {
             <label>Due Date</label>
             <input 
                 type="date"
-                name="dateDue"
+                name="DateDue"
                 onChange={handleChange}
-                value={formData.dateDue}
+                value={formData.DateDue}
             >
 
             </input>
@@ -129,30 +129,30 @@ export const InvoiceForm = ({ clients }) => {
 
             <label>Items</label>
             <br/>
-            {formData.items.map((item) => (
+            {formData.Items.map((item) => (
                 <div key={item.id} className="item">
                     <label>Description</label>
                     <input
                         name="Description" 
                         type="text"
-                        value={item.description}
-                        onChange={(e) => handleItemChange(item.id, "description", e.target.value)}
+                        value={item.Description}
+                        onChange={(e) => handleItemChange(item.Id, "Description", e.target.value)}
                     />
 
                     <label>Quantity</label>
                     <input
                         name="Quantity" 
                         type="number"
-                        value={item.quantity}
-                        onChange={(e) => handleItemChange(item.id, "quantity", e.target.value)}
+                        value={item.Quantity}
+                        onChange={(e) => handleItemChange(item.Id, "Quantity", e.target.value)}
                     />
 
                     <label>Price</label>
                     <input 
                         name="Price"
                         type="number"
-                        value={item.price}
-                        onChange={(e) => handleItemChange(item.id, "price", e.target.value)}
+                        value={item.Price}
+                        onChange={(e) => handleItemChange(item.Id, "Price", e.target.value)}
                     />
 
                     <button onClick={() => removeItem(item.id)}>X</button>

@@ -79,7 +79,7 @@ export const EditClient = (props) => {
 
                 <br/><br/>
 
-            <form onSubmit={handleSubmit}>
+            <form className="form-container" onSubmit={handleSubmit}>
                 <label>Name</label>
                 <input 
                     type="text"
@@ -161,7 +161,7 @@ export const EditClient = (props) => {
                 />
 
                 <br/><br/>
-                <button>Add Client</button>
+                <button>Save Changes</button>
             </form>
 
         </div>
