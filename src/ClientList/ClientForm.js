@@ -37,10 +37,10 @@ export const ClientForm = ({ addClient }) => {
     }
 
     return (
-        <div className="form-container">
+        <div>
             <h3>ClientForm</h3>
 
-            <form onSubmit={handleSubmit}>
+            <form className="form-container" onSubmit={handleSubmit}>
                 <label>Name</label>
                 <input 
                     type="text"

@@ -20,7 +20,7 @@ export const EditClient = (props) => {
         });
     };
 
-    const [selectedClient, setSelectedClient] = useState(null);
+    const [selectedClient, setSelectedClient] = useState(0);
     const handleClientChange = (event) => {
         const selectedId = event.target.value
         setSelectedClient(selectedId);
@@ -67,7 +67,7 @@ export const EditClient = (props) => {
                 onChange={handleClientChange}
                 value={selectedClient}
             >
-                <option value="" selected disabled hidden>Select a client</option>
+                <option>Select a client</option>
                 {props.clients.length > 0 ? (
                     props.clients.map((client, index) => (
                         <option key={index} value={client.id}>

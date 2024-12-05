@@ -18,8 +18,13 @@ export const InvoiceForm = ({ clients }) => {
     };
 
     const addItem = () => {
+        const lastItem = formData.Items[formData.Items.length - 1];
+        if(lastItem && (!lastItem.Description || !lastItem.Quantity || !lastItem.Price)) {
+            alert("Please fill out previous item fields before adding a new one!");
+            return;
+        };
+
         const newItem = {
-            // ItemId: formData.Items.length === 0 ? 1 : formData.Items[formData.Items.length - 1].ItemId + 1,
             Description: "",
             Quantity: 0,
             Price: 0,
@@ -89,6 +94,13 @@ export const InvoiceForm = ({ clients }) => {
 
             if(response.status === 200) {
                 alert("Invoice made!");
+
+                setFormData({
+                    Name: "",
+                    Frequency: "",
+                    DateDue: "",
+                    Items: [],
+                });
             } else {
                 alert("Failed to make invoice!");
             }
@@ -151,13 +163,14 @@ export const InvoiceForm = ({ clients }) => {
             <label>Items</label>
             <br/>
             {formData.Items.map((item, index) => (
-                <div key={item.index} className="item">
+                <div key={index} className="item">
                     <label>Description</label>
                     <input
                         name="Description" 
                         type="text"
                         value={item.Description}
                         onChange={(e) => handleItemChange(item.Description, "Description", e.target.value)}
+                        required
                     />
 
                     <label>Quantity</label>
@@ -166,6 +179,7 @@ export const InvoiceForm = ({ clients }) => {
                         type="number"
                         value={item.Quantity}
                         onChange={(e) => handleItemChange(item.Description, "Quantity", e.target.value)}
+                        required
                     />
 
                     <label>Price</label>
@@ -174,6 +188,7 @@ export const InvoiceForm = ({ clients }) => {
                         type="number"
                         value={item.Price}
                         onChange={(e) => handleItemChange(item.Description, "Price", e.target.value)}
+                        required
                     />
 
                     <button onClick={() => removeItem(item.Description)}>X</button>
