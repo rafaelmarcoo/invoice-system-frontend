@@ -1,4 +1,6 @@
-export const PaidInvoices = () => {
+export const PaidInvoices = (props) => {
+    const paidInv = props.invoices.filter(invoice => invoice.status === "Paid");
+
     return (
         <div className="manage-invoices-paid-invoices">
             <h3>Paid Invoices</h3>
@@ -6,18 +8,30 @@ export const PaidInvoices = () => {
             <table>
                 <thead>
                     <tr>
+                        <th>Client Code</th>
                         <th>Invoice Number</th>
-                        <th>Client</th>
                         <th>Date Sent</th>
                         <th>Date Due</th>
                         <th>Total Amount</th>
-                        <th>GST</th>
-                        <th>Action</th>
-                        <th>Mark as Paid</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Will add data from database */}
+                    {paidInv.length > 0 ? (
+                        paidInv.map((invoice) => (
+                            <tr key={invoice.id}>
+                                <td>{invoice.name}</td>
+                                <td>{invoice.id}</td>
+                                <td>{invoice.dateSent}</td>
+                                <td>{invoice.dateDue}</td>
+                                <td>${invoice.amount}</td>
+                                <td>
+                                    <button>Delete</button>
+                                    <button>Edit</button>
+                                </td>
+                            </tr>
+                        )
+                    )) : (<tr><td colSpan="6">NO SENT INVOICES</td></tr>)}
                 </tbody>
             </table>
         </div>

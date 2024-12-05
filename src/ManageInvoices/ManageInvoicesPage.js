@@ -31,8 +31,8 @@ export const ManageInvoicesPage = () => {
             <ManageInvoicesNavbar toggleTable={toggleTable}/>
 
             {activeTable === "sent" && <SentInvoices invoices={invoices} />}
-            {activeTable === "paid" && <PaidInvoices />}
-            {activeTable === "overdue" && <OverdueInvoices />}
+            {activeTable === "paid" && <PaidInvoices invoices={invoices}/>}
+            {activeTable === "overdue" && <OverdueInvoices invoices={invoices}/>}
         </div>
     );
 }
