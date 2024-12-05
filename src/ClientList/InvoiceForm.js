@@ -19,7 +19,7 @@ export const InvoiceForm = ({ clients }) => {
 
     const addItem = () => {
         const newItem = {
-            Id: formData.Items.length === 0 ? 1 : formData.Items[formData.Items.length - 1].Id + 1,
+            // ItemId: formData.Items.length === 0 ? 1 : formData.Items[formData.Items.length - 1].ItemId + 1,
             Description: "",
             Quantity: 0,
             Price: 0,
@@ -31,41 +31,55 @@ export const InvoiceForm = ({ clients }) => {
         });
     };
 
-    const removeItem = (removeId) => {
+    const removeItem = (removeDscp) => {
         setFormData({
             ...formData,
-            Items: formData.Items.filter((item) => item.Id !== removeId)
+            Items: formData.Items.filter((item) => item.Description !== removeDscp)
         });
     };
 
-    const handleItemChange = (id, field, value) => {
+    const handleItemChange = (description, field, value) => {
         setFormData({
             ...formData,
             Items: formData.Items.map((item) => 
-                item.Id === id ? {...item, [field]: value } : item
+                item.Description === description ? {...item, [field]: value } : item
             ),
         });
     };
 
-    // const calculateTotAmt = () => {
-    //     const totAmt = formData.Items.reduce((total, item) => {
-    //         return total + (parseFloat(item.Quantity) * parseFloat(item.Price) || 0);
-    //     }, 0);
-    //     return totAmt.toFixed(2);
-    // }
+    const calculateTotAmt = () => {
+        const totAmt = formData.Items.reduce((total, item) => {
+            return total + (parseFloat(item.Quantity) * parseFloat(item.Price) || 0);
+        }, 0);
+        return parseFloat(totAmt.toFixed(2));
+    }
+
+    const getCurrentDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        const currentDate = getCurrentDate();
+        const totAmt = calculateTotAmt();
+
         const updatedItems = formData.Items.map((item) => ({
             ...item,
-            Price: parseFloat(item.Price).toFixed(2),
-            Quantity: parseFloat(item.Quantity).toFixed(2),
+            Price: parseFloat(item.Price),
+            Quantity: parseFloat(item.Quantity),
         }));
 
         const updatedFormData = {
             ...formData,
             Items: updatedItems,
+            DateSent: currentDate,
+            Amount: totAmt,
+            Status: "Sent",
         };
 
         console.log(updatedFormData);
@@ -136,14 +150,14 @@ export const InvoiceForm = ({ clients }) => {
 
             <label>Items</label>
             <br/>
-            {formData.Items.map((item) => (
-                <div key={item.id} className="item">
+            {formData.Items.map((item, index) => (
+                <div key={item.index} className="item">
                     <label>Description</label>
                     <input
                         name="Description" 
                         type="text"
                         value={item.Description}
-                        onChange={(e) => handleItemChange(item.Id, "Description", e.target.value)}
+                        onChange={(e) => handleItemChange(item.Description, "Description", e.target.value)}
                     />
 
                     <label>Quantity</label>
@@ -151,7 +165,7 @@ export const InvoiceForm = ({ clients }) => {
                         name="Quantity" 
                         type="number"
                         value={item.Quantity}
-                        onChange={(e) => handleItemChange(item.Id, "Quantity", e.target.value)}
+                        onChange={(e) => handleItemChange(item.Description, "Quantity", e.target.value)}
                     />
 
                     <label>Price</label>
@@ -159,10 +173,10 @@ export const InvoiceForm = ({ clients }) => {
                         name="Price"
                         type="number"
                         value={item.Price}
-                        onChange={(e) => handleItemChange(item.Id, "Price", e.target.value)}
+                        onChange={(e) => handleItemChange(item.Description, "Price", e.target.value)}
                     />
 
-                    <button onClick={() => removeItem(item.id)}>X</button>
+                    <button onClick={() => removeItem(item.Description)}>X</button>
                 </div>
             ))}
 
