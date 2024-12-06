@@ -13,7 +13,6 @@ export const PaidInvoices = (props) => {
                         <th>Date Sent</th>
                         <th>Date Due</th>
                         <th>Total Amount</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,13 +24,9 @@ export const PaidInvoices = (props) => {
                                 <td>{invoice.dateSent}</td>
                                 <td>{invoice.dateDue}</td>
                                 <td>${invoice.amount}</td>
-                                <td>
-                                    <button>Delete</button>
-                                    <button>Edit</button>
-                                </td>
                             </tr>
                         )
-                    )) : (<tr><td colSpan="6">NO SENT INVOICES</td></tr>)}
+                    )) : (<tr><td colSpan="6">NO PAID INVOICES</td></tr>)}
                 </tbody>
             </table>
         </div>

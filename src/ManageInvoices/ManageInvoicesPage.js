@@ -25,14 +25,30 @@ export const ManageInvoicesPage = () => {
         retrieveInvoices();
     }, []);
 
+    const markAsPaid = async (editId) => {
+        try {
+            const response = await Axios.put(`http://localhost:5041/api/invoice/${editId}`)
+            retrieveInvoices();
+
+            if(response.status === 200) {
+                alert("Invoice marked as paid!");
+                retrieveInvoices();
+            } else {
+                alert("Failed to update invoice status!");
+            }
+        } catch(error) {
+            alert("Error: " + error.message);
+        }
+    }
+
     return  (
         <div className="manage-invoices-page">
             <h1>THIS IS ManageInvoicesPage</h1>
             <ManageInvoicesNavbar toggleTable={toggleTable}/>
 
-            {activeTable === "sent" && <SentInvoices invoices={invoices} />}
+            {activeTable === "sent" && <SentInvoices invoices={invoices} markAsPaid={markAsPaid}/>}
             {activeTable === "paid" && <PaidInvoices invoices={invoices}/>}
-            {activeTable === "overdue" && <OverdueInvoices invoices={invoices}/>}
+            {activeTable === "overdue" && <OverdueInvoices invoices={invoices} markAsPaid={markAsPaid}/>}
         </div>
     );
 }

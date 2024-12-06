@@ -1,9 +1,7 @@
 export const OverdueInvoices = (props) => {
     const currentDate = new Date();
-
-
     const overdueInv = props.invoices.filter(invoice => 
-        new Date(invoice.dateDue) <= currentDate);
+        new Date(invoice.dateDue) <= currentDate && invoice.status !== "Paid");
 
     return (
         <div className="manage-invoices-overdue-invoices">
@@ -30,13 +28,12 @@ export const OverdueInvoices = (props) => {
                                 <td>{invoice.dateDue}</td>
                                 <td>${invoice.amount}</td>
                                 <td>
-                                    <button>Mark as Paid</button><br/>
+                                    <button onClick={() => props.markAsPaid(invoice.id)}>Mark as Paid</button><br/>
                                     <button>Delete</button>
-                                    <button>Edit</button>
                                 </td>
                             </tr>
                         )
-                    )) : (<tr><td colSpan="6">NO SENT INVOICES</td></tr>)}
+                    )) : (<tr><td colSpan="6">NO OVERDUE INVOICES</td></tr>)}
                 </tbody>
             </table>
         </div>
