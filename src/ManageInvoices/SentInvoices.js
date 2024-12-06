@@ -27,7 +27,6 @@ export const SentInvoices = (props) => {
                                 <td>${invoice.amount}</td>
                                 <td>
                                     <button onClick={() => props.markAsPaid(invoice.id)}>Mark as Paid</button><br/>
-                                    <button>Delete</button>
                                 </td>
                             </tr>
                         )
