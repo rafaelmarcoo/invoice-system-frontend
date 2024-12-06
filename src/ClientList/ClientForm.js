@@ -33,8 +33,8 @@ export const ClientForm = ({ addClient }) => {
             Zip: "",
             Phone: "",
             Email: "",
-        })
-    }
+        });
+    };
 
     return (
         <div>

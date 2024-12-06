@@ -105,7 +105,7 @@ export const InvoiceForm = ({ clients }) => {
                 alert("Failed to make invoice!");
             }
         } catch(error) {
-            alert("Error: " + error.message)
+            alert("Error: " + error.message);
         }
     }
 
