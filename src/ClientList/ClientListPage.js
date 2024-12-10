@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import { ClientForm } from "./ClientForm";
-import { InvoiceForm } from "./InvoiceForm";
 import { ClientTable } from "./ClientTable";
 import { ClientNavbar } from "./ClientNavbar";
 import { EditClient } from "./EditClient";
@@ -84,7 +83,7 @@ export const ClientListPage = () => {
             <ClientNavbar toggle={toggle}/>
 
             {active === "client-form" && <ClientForm addClient={ addClient }/>}
-            {active === "client-invoice" && <InvoiceForm clients={ clients }/>}
+            {/* {active === "client-invoice" && <InvoiceForm clients={ clients }/>} */}
             {active === "client-edit" && <EditClient clients={ clients } editClient={editClient}/>}
         </div>
     );
