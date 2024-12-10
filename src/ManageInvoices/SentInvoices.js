@@ -1,6 +1,22 @@
 export const SentInvoices = (props) => {
     const sentInv = props.invoices.filter(invoice => invoice.status === "Sent");
 
+    const calculateTotAmt = () => {
+        var totAmt = 0;
+        sentInv.map((invoice) => {
+            invoice.amount != 0 ? totAmt += invoice.amount : totAmt += 0;
+        });
+        return totAmt;
+    };
+
+    const calculateTotGST = () => {
+        var GST = 0;
+        sentInv.map((invoice) => {
+            invoice.gst != 0 ? GST += invoice.gst : GST += 0;
+        });
+        return GST;
+    };
+
     return (
         <div className="manage-invoices-sent-invoices">
             <h3>Sent Invoices</h3>
@@ -34,6 +50,11 @@ export const SentInvoices = (props) => {
                             </tr>
                         )
                     )) : (<tr><td colSpan="6">NO SENT INVOICES</td></tr>)}
+                    <tr>
+                        <td colSpan="4"><strong>Total</strong></td>
+                        <td><strong>${calculateTotAmt()}</strong></td>
+                        <td><strong>${calculateTotGST()}</strong></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

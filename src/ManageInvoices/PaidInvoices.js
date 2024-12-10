@@ -1,13 +1,13 @@
 export const PaidInvoices = (props) => {
-    const paidInv = props.invoices.filter(invoice => invoice.status === "Paid");
-
     const groupedInv = props.invoices
         .filter(invoice => invoice.status === "Paid")
         .reduce((acc, invoice) => {
             if(!acc[invoice.name]) {
-                acc[invoice.name] = [];
+                acc[invoice.name] = {invoices: [], totAmt: 0, GST: 0};
             }
-            acc[invoice.name].push(invoice);
+            acc[invoice.name].invoices.push(invoice);
+            acc[invoice.name].totAmt += invoice.amount;
+            acc[invoice.name].GST += invoice.gst;
             return acc;
         }, {});
 
@@ -32,7 +32,7 @@ export const PaidInvoices = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {groupedInv[companyCode].map((invoice) => (
+                                {groupedInv[companyCode].invoices.map((invoice) => (
                                     <tr key={invoice.id}>
                                         <td>{invoice.name}</td>
                                         <td>{invoice.id}</td>
@@ -43,37 +43,16 @@ export const PaidInvoices = (props) => {
                                         <td>${invoice.gst}</td>
                                     </tr>
                                 ))}
+                                <tr> 
+                                    <td colSpan="5"><strong>Total</strong></td> 
+                                    <td><strong>${groupedInv[companyCode].totAmt}</strong></td> 
+                                    <td><strong>${groupedInv[companyCode].GST}</strong></td> 
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 ))
             ) : (<tr><td colSpan="6">NO PAID INVOICES</td></tr>)}
-
-
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th>Client Code</th>
-                        <th>Invoice Number</th>
-                        <th>Date Sent</th>
-                        <th>Date Due</th>
-                        <th>Total Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {paidInv.length > 0 ? (
-                        paidInv.map((invoice) => (
-                            <tr key={invoice.id}>
-                                <td>{invoice.name}</td>
-                                <td>{invoice.id}</td>
-                                <td>{invoice.dateSent}</td>
-                                <td>{invoice.dateDue}</td>
-                                <td>${invoice.amount}</td>
-                            </tr>
-                        )
-                    )) : (<tr><td colSpan="6">NO PAID INVOICES</td></tr>)}
-                </tbody>
-            </table> */}
         </div>
     );
 }

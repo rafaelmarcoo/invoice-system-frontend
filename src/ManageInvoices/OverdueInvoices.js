@@ -2,6 +2,22 @@ export const OverdueInvoices = (props) => {
     const currentDate = new Date();
     const overdueInv = props.invoices.filter(invoice => 
         new Date(invoice.dateDue) <= currentDate && invoice.status !== "Paid");
+    
+    const calculateTotAmt = () => {
+        var totAmt = 0;
+        overdueInv.map((invoice) => {
+            invoice.amount != 0 ? totAmt += invoice.amount : totAmt += 0;
+        });
+        return totAmt;
+    };
+
+    const calculateTotGST = () => {
+        var GST = 0;
+        overdueInv.map((invoice) => {
+            invoice.gst != 0 ? GST += invoice.gst : GST += 0;
+        });
+        return GST;
+    };
 
     return (
         <div className="manage-invoices-overdue-invoices">
@@ -36,6 +52,11 @@ export const OverdueInvoices = (props) => {
                             </tr>
                         )
                     )) : (<tr><td colSpan="6">NO OVERDUE INVOICES</td></tr>)}
+                    <tr>
+                        <td colSpan="4"><strong>Total</strong></td>
+                        <td><strong>${calculateTotAmt()}</strong></td>
+                        <td><strong>${calculateTotGST()}</strong></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
