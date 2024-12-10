@@ -3,7 +3,6 @@ import { ManageInvoicesNavbar } from "./ManageInvoicesNavbar";
 import { SentInvoices } from "./SentInvoices";
 import { PaidInvoices } from "./PaidInvoices";
 import { OverdueInvoices } from "./OverdueInvoices";
-import { InvoiceForm } from "./InvoiceForm";
 import Axios from "axios";
 
 export const ManageInvoicesPage = () => {
@@ -45,10 +44,6 @@ export const ManageInvoicesPage = () => {
     return  (
         <div className="manage-invoices-page">
             <h1>THIS IS ManageInvoicesPage</h1>
-
-            <InvoiceForm />
-
-            <br/><br/>
             <ManageInvoicesNavbar toggleTable={toggleTable}/>
 
             {activeTable === "sent" && <SentInvoices invoices={invoices} markAsPaid={markAsPaid}/>}

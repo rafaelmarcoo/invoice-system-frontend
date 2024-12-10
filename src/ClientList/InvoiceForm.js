@@ -1,21 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Axios from 'axios';
 
-export const InvoiceForm = () => {
-    const [clients, setClients] = useState([]);
-    const retrieveClients = async () => {
-        try {
-            const response = await Axios.get("http://localhost:5041/api/client");
-            setClients(response.data);
-        } catch(error) {
-            alert("Error: " + error.message);
-        }
-    }
-
-    useEffect(() => {
-        retrieveClients();
-    }, []);
-
+export const InvoiceForm = ({ clients }) => {
     const [formData, setFormData] = useState({
         Name: "",
         Frequency: "",
