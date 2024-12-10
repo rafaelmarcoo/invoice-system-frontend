@@ -46,7 +46,7 @@ export const ManageInvoicesPage = () => {
         <div className="manage-invoices-page">
             <h1>THIS IS ManageInvoicesPage</h1>
 
-            <InvoiceForm />
+            <InvoiceForm retrieveInvoices={retrieveInvoices}/>
 
             <br/><br/>
             <ManageInvoicesNavbar toggleTable={toggleTable}/>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Axios from 'axios';
 
-export const InvoiceForm = () => {
+export const InvoiceForm = (props) => {
     const [clients, setClients] = useState([]);
     const retrieveClients = async () => {
         try {
@@ -85,7 +85,11 @@ export const InvoiceForm = () => {
         event.preventDefault();
 
         const currentDate = getCurrentDate();
-        const totAmt = calculateTotAmt();
+        const amt = calculateTotAmt();
+        const totAmt = amt * 1.15;
+        const gst = totAmt - amt;
+
+        console.log("Tot amt: " + totAmt + "  Without Gst: " + amt + "  Gst: " + gst);
 
         const updatedItems = formData.Items.map((item) => ({
             ...item,
@@ -98,6 +102,7 @@ export const InvoiceForm = () => {
             Items: updatedItems,
             DateSent: currentDate,
             Amount: totAmt,
+            Gst: gst,
             Status: "Sent",
         };
 
@@ -115,6 +120,8 @@ export const InvoiceForm = () => {
                     DateDue: "",
                     Items: [],
                 });
+
+                props.retrieveInvoices();
             } else {
                 alert("Failed to make invoice!");
             }

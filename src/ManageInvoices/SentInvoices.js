@@ -13,6 +13,7 @@ export const SentInvoices = (props) => {
                         <th>Date Sent</th>
                         <th>Date Due</th>
                         <th>Total Amount</th>
+                        <th>GST</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -25,8 +26,10 @@ export const SentInvoices = (props) => {
                                 <td>{invoice.dateSent}</td>
                                 <td>{invoice.dateDue}</td>
                                 <td>${invoice.amount}</td>
+                                <td>${invoice.gst}</td>
                                 <td>
                                     <button onClick={() => props.markAsPaid(invoice.id)}>Mark as Paid</button><br/>
+                                    <button>View Invoice</button>
                                 </td>
                             </tr>
                         )
