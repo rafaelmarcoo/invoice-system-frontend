@@ -101,6 +101,7 @@ export const InvoiceForm = (props) => {
             ...formData,
             Items: updatedItems,
             DateSent: currentDate,
+            DatePaid: "NotPaidYet",
             Amount: totAmt,
             Gst: gst,
             Status: "Sent",

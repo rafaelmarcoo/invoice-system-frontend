@@ -26,6 +26,7 @@ export const PaidInvoices = (props) => {
                                     <th>Invoice Number</th>
                                     <th>Date Sent</th>
                                     <th>Date Due</th>
+                                    <th>Payment Date</th>
                                     <th>Total Amount</th>
                                     <th>GST</th>
                                 </tr>
@@ -37,6 +38,7 @@ export const PaidInvoices = (props) => {
                                         <td>{invoice.id}</td>
                                         <td>{invoice.dateSent}</td>
                                         <td>{invoice.dateDue}</td>
+                                        <td>{invoice.datePaid}</td>
                                         <td>${invoice.amount}</td>
                                         <td>${invoice.gst}</td>
                                     </tr>
