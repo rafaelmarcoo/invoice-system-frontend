@@ -51,7 +51,7 @@ export const GeneratePDF = ({ company, client, invoice }) => {
                         <Text>{company.email}</Text>
                     </View>
                     <View>
-                        <Text>Invoice_{invoice.name}-{invoice.id}</Text>
+                        <Text>Invoice: {invoice.name}-{invoice.id}</Text>
                         <Text>Date Sent: {invoice.dateSent}</Text>
                         <Text>Date Due: {invoice.dateDue}</Text>
                     </View>

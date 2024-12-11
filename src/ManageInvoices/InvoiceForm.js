@@ -103,6 +103,7 @@ export const InvoiceForm = (props) => {
             Amount: totAmt,
             Gst: gst,
             Status: "Sent",
+            FilePath: "-"
         };
 
         return updatedFormData;
@@ -122,10 +123,10 @@ export const InvoiceForm = (props) => {
         ).toBlob();
 
         const pdfData = new FormData();
-        pdfData.append('pdf', blob, `Invoice-${invoiceInfo.name}-${invoiceInfo.id}.pdf`);
+        pdfData.append('pdf', blob, `${invoiceInfo.name}-${invoiceInfo.id}.pdf`);
 
         try {
-            const response = await Axios.post("http://localhost:5041/api/invoice/save-pdf", pdfData);
+            const response = await Axios.post(`http://localhost:5041/api/invoice/save-pdf/${invoiceInfo.id}`, pdfData);
 
             if(response.status === 200) {
                 alert("Invoice saved into directory!");
