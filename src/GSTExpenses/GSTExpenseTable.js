@@ -4,10 +4,6 @@ export const GSTExpenseTable = (props) => {
 
     const handleViewFile = async (fileName) => {
         try {
-            // const response = await Axios.get(`http://localhost:5041/api/expense/view/${fileName}`, { responseType: 'blob' });
-            // const url = window.URL.createObjectURL(new Blob([response.data]));
-            // window.open(url, '_blank');
-
             const url = `http://localhost:5041/api/expense/view/${fileName}`;
             window.open(url, '_blank');
         } catch(error) {

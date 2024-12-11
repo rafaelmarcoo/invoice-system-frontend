@@ -44,26 +44,47 @@ export const GeneratePDF = ({ company, client, invoice }) => {
             <Page size="A4" style={styles.page}>
                 <View style={styles.header}>
                     <View>
-                        <Text></Text>
-                        <Text></Text>
-                        <Text></Text>
-                        <Text></Text>
-                        <Text></Text>
+                        <Text>{company.name}</Text>
+                        <Text>{company.address}</Text>
+                        <Text>{company.city}, {company.zip}</Text>
+                        <Text>{company.phone}</Text>
+                        <Text>{company.email}</Text>
                     </View>
                     <View>
-                        <Text></Text>
-                        <Text></Text>
-                        <Text></Text>
+                        <Text>Invoice_{invoice.name}-{invoice.id}</Text>
+                        <Text>Date Sent: {invoice.dateSent}</Text>
+                        <Text>Date Due: {invoice.dateDue}</Text>
                     </View>
                 </View>
 
-                <View stlye={styles.section}>
+                <View style={styles.section}>
                     <Text style={{ fontWeight: 'bold' }}>Invoice To:</Text>
-                    <Text></Text>
-                    <Text></Text>
-                    <Text></Text>
-                    <Text></Text>
-                    <Text></Text>
+                    <Text>{client.name}</Text>
+                    <Text>{client.address}</Text>
+                    <Text>{client.city}, {client.zip}</Text>
+                    <Text>{client.phone}</Text>
+                    <Text>{client.email}</Text>
+                </View>
+
+                <View style={styles.table}>
+                    <View style={[styles.tableRow, styles.tableHeader]}>
+                      <Text style={styles.tableCol}>Description</Text>
+                      <Text style={styles.tableCol}>Quantity</Text>
+                      <Text style={styles.tableCol}>Price</Text>
+                      <Text style={styles.tableCol}>Total</Text>
+                    </View>
+                    {invoice.items.map((item, index) => (
+                      <View key={index} style={styles.tableRow}>
+                          <Text style={styles.tableCol}>{item.description}</Text>
+                          <Text style={styles.tableCol}>{item.quantity}</Text>
+                          <Text style={styles.tableCol}>{item.price}</Text>
+                          <Text style={styles.tableCol}>{item.quantity * item.price}</Text>
+                      </View>
+                    ))}
+                    <View style={styles.tableRow}>
+                      <Text style={[styles.tableCol, styles.totalRow]} colSpan={3}>Total:</Text>
+                      <Text style={[styles.tableCol, styles.totalRow]}>{invoice.amount}</Text>
+                    </View>
                 </View>
             </Page>
         </Document>

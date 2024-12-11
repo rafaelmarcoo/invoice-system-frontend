@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Axios from 'axios';
 import { GeneratePDF } from "./GeneratePDF";
+import { pdf } from '@react-pdf/renderer';
 
 export const InvoiceForm = (props) => {
     const [clients, setClients] = useState([]);
@@ -108,20 +109,33 @@ export const InvoiceForm = (props) => {
     };
 
     const preparePdf = async (invoiceDetails) => {
+        const clientInfo = await props.getClientInfo(formData.Name);
+        const companyInfo = await props.getCompanyInfo();
+        const invoiceInfo = invoiceDetails;
+
+        const blob = await pdf(
+            <GeneratePDF 
+                company={companyInfo}
+                client={clientInfo}
+                invoice={invoiceInfo}
+            />
+        ).toBlob();
+
+        const pdfData = new FormData();
+        pdfData.append('pdf', blob, `Invoice-${invoiceInfo.name}-${invoiceInfo.id}.pdf`);
+
         try {
-            const clientInfo = await props.getClientInfo(formData.Name);
-            const companyInfo = await props.getCompanyInfo();
-            const invoiceInfo = invoiceDetails;
+            const response = await Axios.post("http://localhost:5041/api/invoice/save-pdf", pdfData);
 
-            console.log(clientInfo);
-            console.log(companyInfo);
-            console.log(invoiceInfo);
-
-            GeneratePDF()
+            if(response.status === 200) {
+                alert("Invoice saved into directory!");
+            } else {
+                alert("Failed to save invoice into directory!");
+            }
         } catch (error) {
             alert("Error: " + error.message);
         }
-    }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
