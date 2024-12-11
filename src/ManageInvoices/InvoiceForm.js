@@ -130,6 +130,7 @@ export const InvoiceForm = (props) => {
 
             if(response.status === 200) {
                 alert("Invoice saved into directory!");
+                // props.handleViewFile(`${invoiceInfo.name}-${invoiceInfo.id}.pdf`);
             } else {
                 alert("Failed to save invoice into directory!");
             }
@@ -148,7 +149,7 @@ export const InvoiceForm = (props) => {
             if(response.status === 200) {
                 alert("Invoice made!");
 
-                preparePdf(response.data);
+                await preparePdf(response.data);
 
                 setFormData({
                     Name: "",
@@ -157,7 +158,7 @@ export const InvoiceForm = (props) => {
                     Items: [],
                 });
 
-                props.retrieveInvoices();
+                await props.retrieveInvoices();
             } else {
                 alert("Failed to make invoice!");
             }
