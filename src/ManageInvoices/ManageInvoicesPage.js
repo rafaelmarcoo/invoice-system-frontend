@@ -42,11 +42,38 @@ export const ManageInvoicesPage = () => {
         }
     }
 
+    const getClientInfo = async (companyCode) => {
+        try {
+            const response = await Axios.get(`http://localhost:5041/api/client/${companyCode}`)
+            return response.data;
+        } catch(error) {
+            alert("Error: " + error.message);
+        }
+    }
+
+    const getCompanyInfo = async () => {
+        try {
+            const response = await Axios.get(`http://localhost:5041/api/company/1`)
+            return response.data;
+        } catch(error) {
+            alert("Error: " + error.message);
+        }
+    }
+
+    const getInvoiceInfo = async (invoiceId) => {
+        try {
+            const response = await Axios.get(`http://localhost:5041/api/invoice/${invoiceId}`);
+            return response.data;
+        } catch(error) {
+            alert("Error: " + error.message);
+        }
+    }
+
     return  (
         <div className="manage-invoices-page">
             <h1>THIS IS ManageInvoicesPage</h1>
 
-            <InvoiceForm retrieveInvoices={retrieveInvoices}/>
+            <InvoiceForm retrieveInvoices={retrieveInvoices} getClientInfo={getClientInfo} getCompanyInfo={getCompanyInfo} getInvoiceInfo={getInvoiceInfo}/>
 
             <br/><br/>
             <ManageInvoicesNavbar toggleTable={toggleTable}/>

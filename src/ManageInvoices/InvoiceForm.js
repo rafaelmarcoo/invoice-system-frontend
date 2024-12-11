@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Axios from 'axios';
+import { GeneratePDF } from "./GeneratePDF";
 
 export const InvoiceForm = (props) => {
     const [clients, setClients] = useState([]);
@@ -81,15 +82,11 @@ export const InvoiceForm = (props) => {
         return `${year}-${month}-${day}`;
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
+    const prepareData = () => {
         const currentDate = getCurrentDate();
         const amt = calculateTotAmt();
         const totAmt = amt * 1.15;
         const gst = totAmt - amt;
-
-        console.log("Tot amt: " + totAmt + "  Without Gst: " + amt + "  Gst: " + gst);
 
         const updatedItems = formData.Items.map((item) => ({
             ...item,
@@ -101,19 +98,42 @@ export const InvoiceForm = (props) => {
             ...formData,
             Items: updatedItems,
             DateSent: currentDate,
-            DatePaid: "NotPaidYet",
+            DatePaid: "---",
             Amount: totAmt,
             Gst: gst,
             Status: "Sent",
         };
 
-        console.log(updatedFormData);
+        return updatedFormData;
+    };
+
+    const preparePdf = async (invoiceDetails) => {
+        try {
+            const clientInfo = await props.getClientInfo(formData.Name);
+            const companyInfo = await props.getCompanyInfo();
+            const invoiceInfo = invoiceDetails;
+
+            console.log(clientInfo);
+            console.log(companyInfo);
+            console.log(invoiceInfo);
+
+            GeneratePDF()
+        } catch (error) {
+            alert("Error: " + error.message);
+        }
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const finalData = prepareData();
 
         try {
-            const response = await Axios.post("http://localhost:5041/api/invoice", updatedFormData);
+            const response = await Axios.post("http://localhost:5041/api/invoice", finalData);
 
             if(response.status === 200) {
                 alert("Invoice made!");
+
+                preparePdf(response.data);
 
                 setFormData({
                     Name: "",
@@ -134,7 +154,6 @@ export const InvoiceForm = (props) => {
     return (
         <div className="invoice-form">
             <h3>New Invoice Form</h3>
-
             <label>Client</label>
             <select 
                 className="drop-down" 

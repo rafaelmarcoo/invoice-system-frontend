@@ -52,11 +52,13 @@ export const OverdueInvoices = (props) => {
                             </tr>
                         )
                     )) : (<tr><td colSpan="6">NO OVERDUE INVOICES</td></tr>)}
-                    <tr>
-                        <td colSpan="4"><strong>Total</strong></td>
-                        <td><strong>${calculateTotAmt()}</strong></td>
-                        <td><strong>${calculateTotGST()}</strong></td>
-                    </tr>
+                    {overdueInv.length > 0 ? (
+                        <tr>
+                            <td colSpan="4"><strong>Total</strong></td>
+                            <td><strong>${calculateTotAmt()}</strong></td>
+                            <td><strong>${calculateTotGST()}</strong></td>
+                        </tr>
+                    ) : <p></p>}
                 </tbody>
             </table>
         </div>
