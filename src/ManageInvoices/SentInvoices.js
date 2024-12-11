@@ -21,7 +21,53 @@ export const SentInvoices = (props) => {
         <div className="manage-invoices-sent-invoices">
             <h3>Sent Invoices</h3>
 
-            <table>
+
+            {sentInv.length > 0 ? (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client Code</th>
+                            <th>Invoice Number</th>
+                            <th>Date Sent</th>
+                            <th>Date Due</th>
+                            <th>Total Amount</th>
+                            <th>GST</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {sentInv.map((invoice) => (
+                            <tr key={invoice.id}>
+                                <td>{invoice.name}</td>
+                                <td>{invoice.id}</td>
+                                <td>{invoice.dateSent}</td>
+                                <td>{invoice.dateDue}</td>
+                                <td>${invoice.amount}</td>
+                                <td>${invoice.gst}</td>
+                                <td>
+                                    <button onClick={() => props.markAsPaid(invoice.id)}>Mark as Paid</button><br/>
+                                    <button onClick={() => props.handleViewFile(invoice.filePath)}>View Invoice</button>
+                                </td>
+                            </tr>
+                        ))}
+                        <tr>
+                            <td colSpan="4"><strong>Total</strong></td>
+                            <td><strong>${calculateTotAmt()}</strong></td>
+                            <td><strong>${calculateTotGST()}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            ) : (
+                <table>
+                    <tbody>
+                        <tr>
+                            <td colSpan="7">NO SENT INVOICES</td>
+                        </tr>
+                </tbody>
+            </table>)}
+
+
+            {/* <table>
                 <thead>
                     <tr>
                         <th>Client Code</th>
@@ -56,7 +102,7 @@ export const SentInvoices = (props) => {
                         <td><strong>${calculateTotGST()}</strong></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> */}
         </div>
     );
 }
