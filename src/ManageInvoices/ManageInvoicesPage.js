@@ -42,6 +42,15 @@ export const ManageInvoicesPage = () => {
         }
     }
 
+    const handleViewFile = async (fileName) => {
+        try {
+            const url = `http://localhost:5041/api/invoice/view/${fileName}`;
+            window.open(url, '_blank');
+        } catch(error) {
+            alert("Error: " + error);
+        }
+    }
+
     const getClientInfo = async (companyCode) => {
         try {
             const response = await Axios.get(`http://localhost:5041/api/client/${companyCode}`)
@@ -78,9 +87,9 @@ export const ManageInvoicesPage = () => {
             <br/><br/>
             <ManageInvoicesNavbar toggleTable={toggleTable}/>
 
-            {activeTable === "sent" && <SentInvoices invoices={invoices} markAsPaid={markAsPaid}/>}
-            {activeTable === "paid" && <PaidInvoices invoices={invoices}/>}
-            {activeTable === "overdue" && <OverdueInvoices invoices={invoices} markAsPaid={markAsPaid}/>}
+            {activeTable === "sent" && <SentInvoices invoices={invoices} markAsPaid={markAsPaid} handleViewFile={handleViewFile}/>}
+            {activeTable === "paid" && <PaidInvoices invoices={invoices} handleViewFile={handleViewFile}/>}
+            {activeTable === "overdue" && <OverdueInvoices invoices={invoices} markAsPaid={markAsPaid} handleViewFile={handleViewFile}/>}
         </div>
     );
 }

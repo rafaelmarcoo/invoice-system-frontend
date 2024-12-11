@@ -45,11 +45,11 @@ export const SentInvoices = (props) => {
                                 <td>${invoice.gst}</td>
                                 <td>
                                     <button onClick={() => props.markAsPaid(invoice.id)}>Mark as Paid</button><br/>
-                                    <button>View Invoice</button>
+                                    <button onClick={() => props.handleViewFile(invoice.filePath)}>View Invoice</button>
                                 </td>
                             </tr>
                         )
-                    )) : (<tr><td colSpan="6">NO SENT INVOICES</td></tr>)}
+                    )) : (<tr><td colSpan="7">NO SENT INVOICES</td></tr>)}
                     <tr>
                         <td colSpan="4"><strong>Total</strong></td>
                         <td><strong>${calculateTotAmt()}</strong></td>

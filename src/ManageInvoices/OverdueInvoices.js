@@ -47,18 +47,18 @@ export const OverdueInvoices = (props) => {
                                 <td>${invoice.gst}</td>
                                 <td>
                                     <button onClick={() => props.markAsPaid(invoice.id)}>Mark as Paid</button><br/>
-                                    <button>View Invoice</button>
+                                    <button onClick={() => props.handleViewFile(invoice.filePath)}>View Invoice</button>
                                 </td>
                             </tr>
                         )
                     )) : (<tr><td colSpan="6">NO OVERDUE INVOICES</td></tr>)}
-                    {overdueInv.length > 0 ? (
+                    {overdueInv.length > 0 && (
                         <tr>
                             <td colSpan="4"><strong>Total</strong></td>
                             <td><strong>${calculateTotAmt()}</strong></td>
                             <td><strong>${calculateTotGST()}</strong></td>
                         </tr>
-                    ) : <p></p>}
+                    )}
                 </tbody>
             </table>
         </div>

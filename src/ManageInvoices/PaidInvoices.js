@@ -29,6 +29,7 @@ export const PaidInvoices = (props) => {
                                     <th>Payment Date</th>
                                     <th>Total Amount</th>
                                     <th>GST</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,6 +42,9 @@ export const PaidInvoices = (props) => {
                                         <td>{invoice.datePaid}</td>
                                         <td>${invoice.amount}</td>
                                         <td>${invoice.gst}</td>
+                                        <td>
+                                        <button onClick={() => props.handleViewFile(invoice.filePath)}>View Invoice</button>
+                                        </td>
                                     </tr>
                                 ))}
                                 <tr> 
@@ -52,7 +56,14 @@ export const PaidInvoices = (props) => {
                         </table>
                     </div>
                 ))
-            ) : (<tr><td colSpan="6">NO PAID INVOICES</td></tr>)}
+            ) : (
+                <table>
+                    <tbody>
+                        <tr>
+                            <td colSpan="7">NO PAID INVOICES</td>
+                        </tr>
+                </tbody>
+            </table>)}
         </div>
     );
 }
