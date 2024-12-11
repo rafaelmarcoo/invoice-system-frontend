@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Axios from 'axios';
 
 export const CompanyForm = () => {
@@ -11,6 +11,27 @@ export const CompanyForm = () => {
         Phone: "",
         Email: ""
     });
+
+    const retrieveClientInfo = async () => {
+        try {
+            const response = await Axios.get("http://localhost:5041/api/company/1");
+            setFormData({
+                Name: response.data.name,
+                GstNumber: response.data.gstNumber,
+                Address: response.data.address,
+                City: response.data.city,
+                Zip: response.data.zip,
+                Phone: response.data.phone,
+                Email: response.data.email
+            });
+        } catch(error) {
+            alert("Error: " + error.message);
+        }
+    }
+
+    useEffect(() => {
+        retrieveClientInfo();
+    }, []);
 
     const handleChange = (event) => {
         const { name, value } = event.target;

@@ -4,7 +4,7 @@ export const SentInvoices = (props) => {
     const calculateTotAmt = () => {
         var totAmt = 0;
         sentInv.map((invoice) => {
-            invoice.amount != 0 ? totAmt += invoice.amount : totAmt += 0;
+            invoice.amount !== 0 ? totAmt += invoice.amount : totAmt += 0;
         });
         return totAmt;
     };
@@ -12,7 +12,7 @@ export const SentInvoices = (props) => {
     const calculateTotGST = () => {
         var GST = 0;
         sentInv.map((invoice) => {
-            invoice.gst != 0 ? GST += invoice.gst : GST += 0;
+            invoice.gst !== 0 ? GST += invoice.gst : GST += 0;
         });
         return GST;
     };
