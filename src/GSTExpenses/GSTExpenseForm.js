@@ -7,6 +7,7 @@ export const GSTExpenseForm = (props) => {
         Date: "",
         Amount: "",
         File: null,
+        Category: "",
     });
 
     const handleChange = (event) => {
@@ -34,6 +35,7 @@ export const GSTExpenseForm = (props) => {
             Date: "",
             Amount: "",
             File: null,
+            Category: "",
         });
     };
 
@@ -60,6 +62,21 @@ export const GSTExpenseForm = (props) => {
                     onChange={handleChange} 
                     placeholder="Provide a brief description of the expense..." 
                 />
+
+                <label>Category (Required)</label>
+                <select
+                    className="drop-down"
+                    name="Category"
+                    onChange={handleChange}
+                    value={formData.Category}
+                >
+                    <option>Select Category</option>
+                    <option value="fullypaid">Fully Paid Expense</option>
+                    <option value="partiallypaid">Partially Paid Expense</option>
+                    <option value="depreciatingasset">Depreciating Asset</option>
+                </select>
+
+                <br/><br/>
 
                 <label>Supporting Documents (Optional)</label>
                 <input 

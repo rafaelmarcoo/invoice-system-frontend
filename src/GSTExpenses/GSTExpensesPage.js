@@ -35,6 +35,7 @@ export const GSTExpensesPage = () => {
         formDataToSend.append("Description", formData.Description);
         formDataToSend.append("Date", formData.Date);
         formDataToSend.append("Amount", formData.Amount);
+        formDataToSend.append("Category", formData.Category);
 
         try {
             const response = await Axios.post("http://localhost:5041/api/expense", formDataToSend);
@@ -68,7 +69,7 @@ export const GSTExpensesPage = () => {
             <br/><br/>
             <GSTExpensesNavbar toggleTable={toggleTable}/>
 
-            {activeTable === "full" && <FullyPaidExpenses expenses={expenses}/>}
+            {activeTable === "full" && <FullyPaidExpenses expenses={expenses} handleViewFile={handleViewFile}/>}
             {activeTable === "partial" && <PartiallyPaidExpenses expenses={expenses}/>}
             {activeTable === "assets" && <DepreciatingAssets expenses={expenses}/>}
             
