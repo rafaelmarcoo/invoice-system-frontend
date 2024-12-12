@@ -105,15 +105,6 @@ export const GeneratePDF = ({ company, client, invoice }) => {
             </View>
           </View>
 
-          {/* <View style={styles.section}>
-            <Text style={styles.boldText}>Invoice To:</Text>
-            <Text>{client.name}</Text>
-            <Text>{client.address}</Text>
-            <Text>{client.city}, {client.zip}</Text>
-            <Text>{client.phone}</Text>
-            <Text>{client.email}</Text>
-          </View> */}
-
           <View style={styles.section}>
             <View style={styles.clientInfo}>
               <Text style={styles.boldText}>Invoice To:</Text>
