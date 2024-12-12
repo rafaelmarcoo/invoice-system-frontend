@@ -2,8 +2,17 @@ import { GSTExpenseTable } from "./GSTExpenseTable";
 import { GSTExpenseForm } from "./GSTExpenseForm";
 import Axios from "axios";
 import { useState, useEffect } from "react";
+import { GSTExpensesNavbar } from "./GSTExpensesNavbar";
+import { FullyPaidExpenses } from "./FullyPaidExpenses";
+import { PartiallyPaidExpenses } from "./PartiallyPaidExpenses";
+import { DepreciatingAssets } from "./DepreciatingAssets";
 
 export const GSTExpensesPage = () => {
+    const [activeTable, setActiveTable] = useState("full");
+    const toggleTable = (text) => {
+        setActiveTable(text);
+    };
+
     const [expenses, setExpenses] = useState([]);
     const retrieveExpenses = async () => {
         try {
@@ -41,11 +50,28 @@ export const GSTExpensesPage = () => {
         }
     }
 
+    const handleViewFile = async (fileName) => {
+        try {
+            const url = `http://localhost:5041/api/expense/view/${fileName}`;
+            window.open(url, '_blank');
+        } catch(error) {
+            alert("Error: " + error);
+        }
+    }
+
     return  (
         <div className="gst-expenses-page">
             <h1>THIS IS GST PAGE</h1>
-            <GSTExpenseTable expenses={expenses}/>
+
             <GSTExpenseForm addExpense={addExpense}/>
+
+            <br/><br/>
+            <GSTExpensesNavbar toggleTable={toggleTable}/>
+
+            {activeTable === "full" && <FullyPaidExpenses expenses={expenses}/>}
+            {activeTable === "partial" && <PartiallyPaidExpenses expenses={expenses}/>}
+            {activeTable === "assets" && <DepreciatingAssets expenses={expenses}/>}
+            
         </div>
     );
 }

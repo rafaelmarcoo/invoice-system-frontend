@@ -1,9 +1,7 @@
-export const GSTExpenseTable = (props) => {
-
+export const FullyPaidExpenses = (props) => {
     return (
         <div className="gst-expense-table">
-            <h3>All Expenses</h3>
-
+            <h3>Fully Paid Expenses</h3>
             <table>
                 <thead>
                     <tr>

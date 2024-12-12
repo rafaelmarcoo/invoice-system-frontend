@@ -1,9 +1,9 @@
-export const GSTExpensesNavbar = () => {
+export const GSTExpensesNavbar = (props) => {
     return (
         <div className="secondary-navbar">
-            <button>Fully Paid Expenses</button>
-            <button>Partially Paid Expenses</button>
-            <button>Depreciating Assets</button>
+            <button onClick={() => props.toggleTable("full")}>Fully Paid Expenses</button>
+            <button onClick={() => props.toggleTable("partial")}>Partially Paid Expenses</button>
+            <button onClick={() => props.toggleTable("assets")}>Depreciating Assets</button>
         </div>  
     );
 }
