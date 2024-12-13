@@ -8,6 +8,7 @@ export const GSTExpenseForm = (props) => {
         Amount: "",
         File: null,
         Category: "",
+        GstRate: "",
     });
 
     const handleChange = (event) => {
@@ -36,6 +37,7 @@ export const GSTExpenseForm = (props) => {
             Amount: "",
             File: null,
             Category: "",
+            GstRate: "",
         });
     };
 
@@ -101,6 +103,15 @@ export const GSTExpenseForm = (props) => {
                     value={formData.Amount}
                     onChange={handleChange}
                     required 
+                />
+
+                <label>GST Rate (0.15 for 15%, 0 for no GST) (Required)</label>
+                <input 
+                    type="number"
+                    name="GstRate"
+                    value={formData.GstRate}
+                    onChange={handleChange}
+                    required
                 />
 
                 <br/><br/>

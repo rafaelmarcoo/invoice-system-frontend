@@ -12,6 +12,7 @@ export const PartiallyPaidExpenses = (props) => {
                             <th>Description</th>
                             <th>Date</th>
                             <th>Cost</th>
+                            <th>GST Rate</th>
                             <th>Files</th>
                             <th>Action</th>
                         </tr>
@@ -23,6 +24,7 @@ export const PartiallyPaidExpenses = (props) => {
                                 <td>{expense.description}</td>
                                 <td>{expense.date}</td>
                                 <td>${expense.amount}</td>
+                                <td>{expense.gstRate}</td>
                                 <td>{expense.filePath}</td>
                                 <td>
                                     {expense.filePath === "NO FILES UPLOADED" ? <p>...</p> : (
