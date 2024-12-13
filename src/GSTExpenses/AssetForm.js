@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-export const AssetForm = () => {
+export const AssetForm = (props) => {
     const [formData, setFormData] = useState({
         Name: "",
         Description: "",
         DatePurchased: "",
-        DepreciationType: "",
+        DepreciationType: "straight-line",
+        DepreciationRate: "",
         OriginalValue: "",
         UsefulLife: "",
     });
@@ -18,9 +19,28 @@ export const AssetForm = () => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    }
+        const floatOV = parseFloat(formData.OriginalValue).toFixed(2);
+        const floatDR = parseFloat(formData.DepreciationRate).toFixed(2);
+        setFormData({
+            ...formData,
+            OriginalValue: parseFloat(floatOV),
+            DepreciationRate: parseFloat(floatDR),
+        });
+
+        await props.addAsset(formData);
+        setFormData({
+            Name: "",
+            Description: "",
+            DatePurchased: "",
+            DepreciationType: "",
+            DepreciationRate: "",
+            OriginalValue: "",
+            UsefulLife: "",
+        });
+    };
 
     return (
         <div className="form">
@@ -47,6 +67,16 @@ export const AssetForm = () => {
                     required 
                 />
 
+                <label>Original Value</label>
+                <input 
+                    type="number" 
+                    name="OriginalValue"
+                    value={formData.OriginalValue}
+                    onChange={handleChange}
+                    placeholder="Original value of the asset..." 
+                    required 
+                />
+
                 <label>Purchase Date</label>
                 <input 
                     type="date" 
@@ -63,22 +93,21 @@ export const AssetForm = () => {
                     onChange={handleChange}
                     value={formData.DepreciationType}
                 >
-                    <option>Select a depreciation method</option>
                     <option value="straight-line">Straight-Line Method</option>
                     <option value="diminishing">Diminishing Value</option>
                 </select>
-
-                <label>Original Value</label>
+                
+                <label>Depreciation Rate</label>
                 <input 
-                    type="number" 
-                    name="OriginalValue"
-                    value={formData.OriginalValue}
+                    type="number"
+                    name="DepreciationRate"
+                    value={formData.DepreciationRate}
                     onChange={handleChange}
-                    placeholder="Original value of the asset..." 
-                    required 
+                    placeholder="Rate of depreciation ..."
+                    required
                 />
 
-                <label>Useful Life (in years)</label>
+                <label>Estimated Useful Life (in years)</label>
                 <input 
                     type="number" 
                     name="UsefulLife"
