@@ -33,7 +33,7 @@ export const DepreciatingAssets = (props) => {
         <div className="gst-expense-table">
             {depreciation.length > 0 ? (
                 depreciation.map((asset) => (
-                    <div className="asset-table">
+                    <div className="asset-table" key={asset.id}>
                         <table>
                             <thead>
                                 <tr colSpan="5">
