@@ -83,6 +83,7 @@ export const GSTExpensesPage = () => {
 
             if(response.status === 200) {
                 alert("Asset added!");
+                retrieveAssets();
             } else {
                 alert("Failed to add expense");
             }

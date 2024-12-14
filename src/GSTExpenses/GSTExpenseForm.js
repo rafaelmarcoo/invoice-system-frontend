@@ -72,10 +72,8 @@ export const GSTExpenseForm = (props) => {
                     onChange={handleChange}
                     value={formData.Category}
                 >
-                    <option>Select Category</option>
                     <option value="fullypaid">Fully Paid Expense</option>
                     <option value="partiallypaid">Partially Paid Expense</option>
-                    <option value="depreciatingasset">Depreciating Asset</option>
                 </select>
 
                 <br/><br/>

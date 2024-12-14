@@ -4,43 +4,72 @@ import { useEffect, useState } from 'react';
 export const DepreciatingAssets = (props) => {
     const [depreciation, setDepreciation] = useState([]);
 
-    const retrieveDep = async (id) => {
+    const retrieveDepreciations = async () => {
         try {
-            const response = await Axios.get(`http://localhost:5041/api/asset/${id}`);
-            setDepreciation(response.data);
+            const results = await Promise.all(
+                props.assets.map(async (asset) => {
+                    const response = await Axios.get(`http://localhost:5041/api/asset/${asset.id}`);
+                    return { 
+                        id: asset.id, 
+                        name: asset.name, 
+                        date: asset.datePurchased, 
+                        method: asset.depreciationType, 
+                        data: response.data };
+                })
+            );
+            setDepreciation(results);
         } catch(error) {
             alert("Error: " + error.message);
         }
-    }
+    };
+
+    useEffect(() => {
+        if(props.assets.length > 0) {
+            retrieveDepreciations();
+        };
+    }, [props.assets]);
+
     return (
         <div className="gst-expense-table">
-            {props.assets.length > 0 ? (
+            {depreciation.length > 0 ? (
+                depreciation.map((asset) => (
+                    <div className="asset-table">
+                        <table>
+                            <thead>
+                                <tr colSpan="5">
+                                    <th>Name: {asset.name} Date Purchased: {asset.date} Depreciation Type: {asset.method}</th>
+                                </tr>
+                                <tr>
+                                    <th>Useful Life (in years)</th>
+                                    <th>Original Cost</th>
+                                    <th>Depreciation Rate</th>
+                                    <th>Depreciation Claimed</th>
+                                    <th>Adjusted Tax Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {asset.data.map((data) => (
+                                    <tr key={data.year}>
+                                        <td>Year {data.year}</td>
+                                        <td>${data.originalValue}</td>
+                                        <td>{data.depreciationRate}</td>
+                                        <td>${data.depreciationClaimed}</td>
+                                        <td>${data.adjustedTaxValue}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                ))
+            ) : (
                 <table>
-                    <thead>
-                        <tr>
-                            <th colSpan="5">name of asset  + details from database</th>
-                        </tr>
-                        <tr>
-                            <th>Year</th>
-                            <th>Original Value</th>
-                            <th>Depreciation Rate</th>
-                            <th>Depreciation Claimed</th>
-                            <th>Adjusted Tax Value</th>
-                        </tr>
-                    </thead>
                     <tbody>
-                        {props.assets.map((asset) => retrieveDep(asset.id) (
-                            <tr key={asset.id}>
-                                <td>depreciation.year</td>
-                                <td>depreciation.originalValue</td>
-                                <td>depreciation.depreciationRate</td>
-                                <td>depreciation.depreciationClaimed</td>
-                                <td>depreciation.adjustedTaxValue</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (<table></table>)}
+                        <tr>
+                            <td colSpan="5">NO ASSETS</td>
+                        </tr>
+                </tbody>
+            </table>
+            )}
         </div>
     );
 }
