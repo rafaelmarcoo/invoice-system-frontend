@@ -4,18 +4,11 @@ import { useState, useEffect } from "react";
 import { GSTExpensesNavbar } from "./GSTExpensesNavbar";
 import { FullyPaidExpenses } from "./FullyPaidExpenses";
 import { PartiallyPaidExpenses } from "./PartiallyPaidExpenses";
-import { DepreciatingAssets } from "./DepreciatingAssets";
-import { AssetForm } from "./AssetForm";
 
 export const GSTExpensesPage = () => {
     const [activeTable, setActiveTable] = useState("full");
     const toggleTable = (text) => {
         setActiveTable(text);
-    };
-
-    const [activeForm, setActiveForm] = useState("expense");
-    const toggleForm = (text) => {
-        setActiveForm(text);
     };
 
     const [expenses, setExpenses] = useState([]);
@@ -28,19 +21,8 @@ export const GSTExpensesPage = () => {
         };
     };
 
-    const [assets, setAssets] = useState([]);
-    const retrieveAssets = async () => {
-        try {
-            const response = await Axios.get("http://localhost:5041/api/asset");
-            setAssets(response.data);
-        } catch(error) {
-            alert("Error: " + error.message);
-        };
-    };
-
     useEffect(() => {
         retrieveExpenses();
-        retrieveAssets();
     }, []);
 
     const addExpense = async (formData) => {
@@ -77,42 +59,17 @@ export const GSTExpensesPage = () => {
         }
     }
 
-    const addAsset = async (formData) => {
-        try {
-            const response = await Axios.post("http://localhost:5041/api/asset", formData)
-
-            if(response.status === 200) {
-                alert("Asset added!");
-                retrieveAssets();
-            } else {
-                alert("Failed to add expense");
-            }
-        } catch(error) {
-            alert("Error: " + error.message);
-        }
-    }
-
     return  (
         <div className="gst-expenses-page">
             <h1>THIS IS GST PAGE</h1>
 
-            <h2>Expense or Asset Form:</h2>
-            <select
-                onChange={(event) => toggleForm(event.target.value)}
-            >
-                <option value="expense">Expense</option>
-                <option value="asset">Asset</option>
-            </select>
-
-            {activeForm === "expense" && <GSTExpenseForm addExpense={addExpense}/>}
-            {activeForm === "asset" && <AssetForm addAsset={addAsset}/>}
+            <GSTExpenseForm addExpense={addExpense}/>
 
             <br/><br/>
             <GSTExpensesNavbar toggleTable={toggleTable}/>
 
             {activeTable === "full" && <FullyPaidExpenses expenses={expenses} handleViewFile={handleViewFile}/>}
             {activeTable === "partial" && <PartiallyPaidExpenses expenses={expenses}/>}
-            {activeTable === "assets" && <DepreciatingAssets assets={assets}/>}
             
         </div>
     );

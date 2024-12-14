@@ -7,6 +7,7 @@ export const Navbar = () => {
             <Link to="/clientlist">Client List</Link>
             <Link to="/manageinvoices">Manage Invoice</Link>
             <Link to="/gstexpenses">GST Expenses</Link>
+            <Link to="/assets">Assets</Link>
             <Link to="/taxsummary">Tax Summary</Link>
         </div>
     );
