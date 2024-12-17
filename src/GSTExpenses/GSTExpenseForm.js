@@ -42,7 +42,7 @@ export const GSTExpenseForm = (props) => {
     };
 
     return (
-        <div className="gst-expenses-addGST">
+        <div className="form-container">
             <h3>Add GST Expense</h3>
 
             <form onSubmit={handleSubmit}>

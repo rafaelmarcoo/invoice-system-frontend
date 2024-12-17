@@ -168,7 +168,7 @@ export const InvoiceForm = (props) => {
     }
 
     return (
-        <div className="invoice-form">
+        <div className="form-container">
             <h3>New Invoice Form</h3>
             <label>Client</label>
             <select 
