@@ -45,6 +45,13 @@ code {
 
 .navbar a {
   color: var(--tertiary-color);
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.navbar a:hover {
+  color: #fff;
 }
 
 
@@ -52,6 +59,24 @@ code {
 .secondary-navbar {
   display: flex;
   justify-content: space-evenly;
+  border-top: 3px dotted var(--secondary-color);
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.secondary-navbar button {
+  padding: 10px 30px;
+  border: 0;
+  border-radius: 100px;
+  background-color: var(--secondary-color);
+  color: var(--tertiary-color);
+  font-weight: Bold;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.secondary-navbar button:hover {
+  transform: scale(1.05);
 }
 
 .tab-header {
