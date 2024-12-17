@@ -59,7 +59,7 @@ code {
 
 /* Form Styling */
 .form-container {
-  border: 3px solid var(--tertiary-color);
+  border: 3px solid var(--secondary-color);
   width: 100%;
   min-width: 900px;
   padding: 20px;
@@ -72,17 +72,7 @@ form label {
   margin-bottom: 5px;
 }
 
-/* form input, form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid var(--tertiary-color);
-  font-size: 13px;
-  box-sizing: border-box;
-} */
-
 form input {
-  align-items: center;
   border-radius: 10px;
   outline: 2px solid var(--secondary-color);
   border: 0;
@@ -97,16 +87,53 @@ form input:focus {
   background-color: #fff;
 }
 
-/* form input:focus, form textarea:focus {
-  outline: none;
-} */
-
 form button {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--tertiary-color);
-  border: none;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
   cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--secondary-color);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+form button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--secondary-color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+form button:hover {
+  color: #fff;
+}
+
+form button:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+form button:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+form button:active:before {
+  background: var(--secondary-color);
+  transition: background 0s;
 }
 
 .drop-down {
