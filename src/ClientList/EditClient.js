@@ -25,18 +25,31 @@ export const EditClient = (props) => {
         const selectedId = event.target.value
         setSelectedClient(selectedId);
 
-        const clientData = props.clients.find(client => client.id === parseInt(selectedId));
+        if(selectedId === "0") {
+            setFormData({
+                CompanyCode: "",
+                GstNumber: "",
+                Name: "",
+                Address: "",
+                City: "",
+                Zip: "",
+                Phone: "",
+                Email: "",
+            }); 
+        } else {
+            const clientData = props.clients.find(client => client.id === parseInt(selectedId));
 
-        setFormData({
-            CompanyCode: clientData.companyCode,
-            GstNumber: clientData.gstNumber,
-            Name: clientData.name,
-            Address: clientData.address,
-            City: clientData.city,
-            Zip: clientData.zip,
-            Phone: clientData.phone,
-            Email: clientData.email,
-        }); 
+            setFormData({
+                CompanyCode: clientData.companyCode,
+                GstNumber: clientData.gstNumber,
+                Name: clientData.name,
+                Address: clientData.address,
+                City: clientData.city,
+                Zip: clientData.zip,
+                Phone: clientData.phone,
+                Email: clientData.email,
+            }); 
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -59,25 +72,26 @@ export const EditClient = (props) => {
         <div>
             <h3>Edit Client</h3>
 
-            <label>Client</label>
-            <select 
-                className="drop-down" 
-                name="clients" 
-                id="clients" 
-                onChange={handleClientChange}
-                value={selectedClient}
-            >
-                <option>Select a client</option>
-                {props.clients.length > 0 ? (
-                    props.clients.map((client, index) => (
-                        <option key={index} value={client.id}>
-                            {client.name}
-                        </option>
-                    )
-                )) : (<option>NO CLIENTS</option>)}
-            </select>
+            <div className="select-dropdown">
+                <label>Client</label>
+                <select 
+                    name="clients" 
+                    id="clients" 
+                    onChange={handleClientChange}
+                    value={selectedClient}
+                >
+                    <option value="0">Select a client</option>
+                    {props.clients.length > 0 ? (
+                        props.clients.map((client, index) => (
+                            <option key={index} value={client.id}>
+                                {client.name}
+                            </option>
+                        )
+                    )) : (<option>NO CLIENTS</option>)}
+                </select>
+            </div>
 
-                <br/><br/>
+            <br/><br/>
 
             <form className="form-container" onSubmit={handleSubmit}>
                 <label>Name</label>

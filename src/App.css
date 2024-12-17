@@ -52,6 +52,7 @@ code {
 
 .navbar a:hover {
   color: #fff;
+  text-decoration: underline;
 }
 
 
@@ -79,9 +80,13 @@ code {
   transform: scale(1.05);
 }
 
-.tab-header {
-  text-align: left;
-  margin-left: 20px;
+/* Input Select Styling */
+
+.select-dropdown select{
+  width: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: 10px;
 }
 
 /* Form Styling */
@@ -162,6 +167,3 @@ form button:active:before {
   transition: background 0s;
 }
 
-.drop-down {
-  width: 50%;
-}
