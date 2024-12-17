@@ -81,7 +81,6 @@ code {
 }
 
 /* Input Select Styling */
-
 .select-dropdown select{
   width: 200px;
   padding: 5px;
@@ -167,3 +166,32 @@ form button:active:before {
   transition: background 0s;
 }
 
+/* Table Styling */
+.table-list table {
+  width: 100%;
+}
+
+.table-list th, td {
+  border: 1.5px solid black;
+}
+
+.table-list th {
+  background-color: var(--tertiary-color);
+}
+
+.table-list button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.8em;
+  border-radius: 5px;
+}
+
+.table-list button:hover {
+  transform: scale(1.05);
+}
+
+.table-list tr:nth-child(even) {
+  background-color: grey;
+  color:#D4DE95
+}

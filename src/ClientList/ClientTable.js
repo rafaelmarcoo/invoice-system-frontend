@@ -4,7 +4,7 @@ export const ClientTable = (props) => {
     }
 
     return (
-        <div className="client-list-table">
+        <div className="table-list">
             <h3>Client List</h3>
             <table>
                 <thead>
