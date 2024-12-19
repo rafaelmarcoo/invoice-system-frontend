@@ -42,10 +42,10 @@ export const GSTExpenseForm = (props) => {
     };
 
     return (
-        <div className="form-container">
+        <div>
             <h3>Add GST Expense</h3>
 
-            <form onSubmit={handleSubmit}>
+            <form className="form-container" onSubmit={handleSubmit}>
                 <label>Expense Title (Required)</label>
                 <input 
                     type="text" 
@@ -65,18 +65,22 @@ export const GSTExpenseForm = (props) => {
                     placeholder="Provide a brief description of the expense..." 
                 />
 
-                <label>Category (Required)</label>
-                <select
-                    className="drop-down"
-                    name="Category"
-                    onChange={handleChange}
-                    value={formData.Category}
-                >
-                    <option value="fullypaid">Fully Paid Expense</option>
-                    <option value="partiallypaid">Partially Paid Expense</option>
-                </select>
-
                 <br/><br/>
+
+                <div className="select-dropdown">
+                    <label>Category (Required)</label>
+                    <select
+                        className="drop-down"
+                        name="Category"
+                        onChange={handleChange}
+                        value={formData.Category}
+                    >
+                        <option value="fullypaid">Fully Paid Expense</option>
+                        <option value="partiallypaid">Partially Paid Expense</option>
+                    </select>
+                </div>
+
+                <br/>
 
                 <label>Supporting Documents (Optional)</label>
                 <input 

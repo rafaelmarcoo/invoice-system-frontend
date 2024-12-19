@@ -5,7 +5,7 @@ export const PartiallyPaidExpenses = (props) => {
         <div className="gst-expense-table">
             <h3>Partially Paid Expenses</h3>
             {partialExpenses.length > 0 ? (
-                <table>
+                <table className="table-list">
                     <thead>
                         <tr>
                             <th>Title</th>
@@ -36,7 +36,7 @@ export const PartiallyPaidExpenses = (props) => {
                     </tbody>
                 </table>
             ) : (
-                <table>
+                <table className="table-list">
                     <tbody>
                         <tr>
                             <td colSpan="7">NO EXPENSES</td>

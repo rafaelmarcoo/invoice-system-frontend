@@ -61,11 +61,10 @@ export const GSTExpensesPage = () => {
 
     return  (
         <div className="gst-expenses-page">
-            <h1>THIS IS GST PAGE</h1>
-
             <GSTExpenseForm addExpense={addExpense}/>
 
             <br/><br/>
+            
             <GSTExpensesNavbar toggleTable={toggleTable}/>
 
             {activeTable === "full" && <FullyPaidExpenses expenses={expenses} handleViewFile={handleViewFile}/>}
