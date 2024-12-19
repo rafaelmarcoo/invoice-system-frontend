@@ -80,8 +80,6 @@ export const ManageInvoicesPage = () => {
 
     return  (
         <div className="manage-invoices-page">
-            <h1>THIS IS ManageInvoicesPage</h1>
-
             <InvoiceForm retrieveInvoices={retrieveInvoices} getClientInfo={getClientInfo} getCompanyInfo={getCompanyInfo} getInvoiceInfo={getInvoiceInfo} handleViewFile={handleViewFile}/>
 
             <br/><br/>

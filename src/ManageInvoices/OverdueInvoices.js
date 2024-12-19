@@ -24,7 +24,7 @@ export const OverdueInvoices = (props) => {
             <h3>Overdue Invoices</h3>
 
 
-            {overdueInv.lenght > 0 ? (
+            {overdueInv.length > 0 ? (
                 <table>
                     <thead>
                         <tr>

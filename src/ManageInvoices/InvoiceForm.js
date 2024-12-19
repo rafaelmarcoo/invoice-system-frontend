@@ -168,95 +168,96 @@ export const InvoiceForm = (props) => {
     }
 
     return (
-        <div className="form-container">
+        <div>
             <h3>New Invoice Form</h3>
-            <label>Client</label>
-            <select 
-                className="drop-down" 
-                name="Name" 
-                onChange={handleChange}
-                value={formData.Name}
-            >
-                <option>Select a client</option>
-                {clients.length > 0 ? (
-                    clients.map((client, index) => (
-                        <option key={index} value={client.companyCode}>
-                            {client.name}
-                        </option>
-                    )
-                )) : (<option>NO CLIENTS</option>)}
-            </select>
+            <form className="form-container" onSubmit={handleSubmit}>
+                <label>Client</label>
+                <select 
+                    className="drop-down" 
+                    name="Name" 
+                    onChange={handleChange}
+                    value={formData.Name}
+                >
+                    <option>Select a client</option>
+                    {clients.length > 0 ? (
+                        clients.map((client, index) => (
+                            <option key={index} value={client.companyCode}>
+                                {client.name}
+                            </option>
+                        )
+                    )) : (<option>NO CLIENTS</option>)}
+                </select>
 
-            <br/><br/>
-            
-            <label>Frequency</label>
-            <select
-                className="drop-down"
-                name="Frequency"
-                onChange={handleChange}
-                value={formData.Frequency}
-            >    
-                <option>Select time</option>
-                <option value="one-time">One-Time</option>
-                <option value="weekly">Weekly</option>
-                <option value="fortnightly">Fortnightly</option>
-                <option value="monthly">Monthly</option>
-            </select>
+                <br/><br/>
+                
+                <label>Frequency</label>
+                <select
+                    className="drop-down"
+                    name="Frequency"
+                    onChange={handleChange}
+                    value={formData.Frequency}
+                >    
+                    <option>Select time</option>
+                    <option value="one-time">One-Time</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="fortnightly">Fortnightly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
 
-            <br/><br/>
+                <br/><br/>
 
-            <label>Due Date</label>
-            <input 
-                type="date"
-                name="DateDue"
-                onChange={handleChange}
-                value={formData.DateDue}
-            >
+                <label>Due Date</label>
+                <input 
+                    type="date"
+                    name="DateDue"
+                    onChange={handleChange}
+                    value={formData.DateDue}
+                >
 
-            </input>
+                </input>
 
-            <br/><br/>
+                <br/><br/>
 
-            <label>Items</label>
-            <br/>
-            {formData.Items.map((item, index) => (
-                <div key={index} className="item">
-                    <label>Description</label>
-                    <input
-                        name="Description" 
-                        type="text"
-                        value={item.Description}
-                        onChange={(e) => handleItemChange(item.Description, "Description", e.target.value)}
-                        required
-                    />
+                <label>Items</label>
+                <br/>
+                {formData.Items.map((item, index) => (
+                    <div key={index} className="item">
+                        <label>Description</label>
+                        <input
+                            name="Description" 
+                            type="text"
+                            value={item.Description}
+                            onChange={(e) => handleItemChange(item.Description, "Description", e.target.value)}
+                            required
+                        />
 
-                    <label>Quantity</label>
-                    <input
-                        name="Quantity" 
-                        type="number"
-                        value={item.Quantity}
-                        onChange={(e) => handleItemChange(item.Description, "Quantity", e.target.value)}
-                        required
-                    />
+                        <label>Quantity</label>
+                        <input
+                            name="Quantity" 
+                            type="number"
+                            value={item.Quantity}
+                            onChange={(e) => handleItemChange(item.Description, "Quantity", e.target.value)}
+                            required
+                        />
 
-                    <label>Price</label>
-                    <input 
-                        name="Price"
-                        type="number"
-                        value={item.Price}
-                        onChange={(e) => handleItemChange(item.Description, "Price", e.target.value)}
-                        required
-                    />
+                        <label>Price</label>
+                        <input 
+                            name="Price"
+                            type="number"
+                            value={item.Price}
+                            onChange={(e) => handleItemChange(item.Description, "Price", e.target.value)}
+                            required
+                        />
 
-                    <button onClick={() => removeItem(item.Description)}>X</button>
-                </div>
-            ))}
+                        <button onClick={() => removeItem(item.Description)}>X</button>
+                    </div>
+                ))}
 
-            <button onClick={addItem}>Add Item</button>
+                <button onClick={addItem}>Add Item</button>
 
-            <br/><br/>
-            <button type="submit" onClick={handleSubmit}>Add Invoice</button>
-            
+                <br/><br/>
+                <button>Add Invoice</button>
+            </form>     
         </div>
     );
 }
