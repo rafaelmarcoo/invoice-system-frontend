@@ -19,7 +19,7 @@ export const PaidInvoices = (props) => {
             {Object.keys(groupedInv).length > 0 ? (
                 Object.keys(groupedInv).map((companyCode) => (
                     <div key={companyCode}>
-                        <table>
+                        <table className="table-list">
                             <thead>
                                 <tr>
                                     <th>Client Code</th>
@@ -57,7 +57,7 @@ export const PaidInvoices = (props) => {
                     </div>
                 ))
             ) : (
-                <table>
+                <table className="table-list">
                     <tbody>
                         <tr>
                             <td colSpan="7">NO PAID INVOICES</td>

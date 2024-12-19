@@ -23,7 +23,7 @@ export const SentInvoices = (props) => {
 
 
             {sentInv.length > 0 ? (
-                <table>
+                <table className="table-list">
                     <thead>
                         <tr>
                             <th>Client Code</th>
@@ -58,7 +58,7 @@ export const SentInvoices = (props) => {
                     </tbody>
                 </table>
             ) : (
-                <table>
+                <table className="table-list">
                     <tbody>
                         <tr>
                             <td colSpan="7">NO SENT INVOICES</td>
