@@ -171,40 +171,43 @@ export const InvoiceForm = (props) => {
         <div>
             <h3>New Invoice Form</h3>
             <form className="form-container" onSubmit={handleSubmit}>
-                <label>Client</label>
-                <select 
-                    className="drop-down" 
-                    name="Name" 
-                    onChange={handleChange}
-                    value={formData.Name}
-                >
-                    <option>Select a client</option>
-                    {clients.length > 0 ? (
-                        clients.map((client, index) => (
-                            <option key={index} value={client.companyCode}>
-                                {client.name}
-                            </option>
-                        )
-                    )) : (<option>NO CLIENTS</option>)}
-                </select>
+                <div className="select-dropdown">
+                    <label>Client</label>
+                    <select 
+                        name="Name" 
+                        onChange={handleChange}
+                        value={formData.Name}
+                    >
+                        <option>Select a client</option>
+                        {clients.length > 0 ? (
+                            clients.map((client, index) => (
+                                <option key={index} value={client.companyCode}>
+                                    {client.name}
+                                </option>
+                            )
+                        )) : (<option>NO CLIENTS</option>)}
+                    </select>
+                </div>
 
-                <br/><br/>
+                <br/>
                 
-                <label>Frequency</label>
-                <select
-                    className="drop-down"
-                    name="Frequency"
-                    onChange={handleChange}
-                    value={formData.Frequency}
-                >    
-                    <option>Select time</option>
-                    <option value="one-time">One-Time</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="fortnightly">Fortnightly</option>
-                    <option value="monthly">Monthly</option>
-                </select>
-
-                <br/><br/>
+                <div className="select-dropdown">
+                    <label>Frequency</label>
+                    <select
+                        className="drop-down"
+                        name="Frequency"
+                        onChange={handleChange}
+                        value={formData.Frequency}
+                    >    
+                        <option>Select time</option>
+                        <option value="one-time">One-Time</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="fortnightly">Fortnightly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                
+                <br/>
 
                 <label>Due Date</label>
                 <input 

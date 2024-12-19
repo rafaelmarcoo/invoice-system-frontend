@@ -81,11 +81,20 @@ code {
 }
 
 /* Input Select Styling */
-.select-dropdown select{
+.select-dropdown select {
   width: 200px;
   padding: 5px;
   border-radius: 10px;
   margin-left: 10px;
+}
+
+.select-dropdown label {
+  display: inline;
+}
+
+.item input{
+  width: 100%;
+  /* display: inline-block; */
 }
 
 /* Form Styling */
@@ -122,7 +131,7 @@ form button {
   font-family: inherit;
   display: inline-block;
   width: 8em;
-  line-height: 2.5em;
+  line-height: 2em;
   margin: 20px;
   position: relative;
   cursor: pointer;
