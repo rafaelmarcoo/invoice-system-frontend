@@ -34,11 +34,12 @@ export const DepreciatingAssets = (props) => {
             {depreciation.length > 0 ? (
                 depreciation.map((asset) => (
                     <div className="asset-table" key={asset.id}>
-                        <table>
+                        <h3>Name: {asset.name} | Date Purchased: {asset.date} | Depreciation Type: {asset.method}</h3>
+                        <table className="table-list">
                             <thead>
-                                <tr colSpan="5">
+                                {/* <tr colSpan="5">
                                     <th>Name: {asset.name} Date Purchased: {asset.date} Depreciation Type: {asset.method}</th>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <th>Useful Life (in years)</th>
                                     <th>Original Cost</th>

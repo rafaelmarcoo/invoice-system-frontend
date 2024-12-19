@@ -43,10 +43,9 @@ export const AssetForm = (props) => {
     };
 
     return (
-        <div className="form">
+        <div>
             <h3>Depreciable Asset Form</h3>
-
-            <form onSubmit={handleSubmit}> 
+            <form className="form-container" onSubmit={handleSubmit}> 
                 <label>Asset Name</label>
                 <input 
                     type="text" 
@@ -86,16 +85,21 @@ export const AssetForm = (props) => {
                     required 
                 />
 
-                <label>Depreciation Type</label>
-                <select
-                    className="drop-down"
-                    name="DepreciationType"
-                    onChange={handleChange}
-                    value={formData.DepreciationType}
-                >
-                    <option value="straight-line">Straight-Line Method</option>
-                    <option value="diminishing">Diminishing Value</option>
-                </select>
+                <br/><br/>
+
+                <div className="select-dropdown">
+                    <label>Depreciation Type</label>
+                    <select
+                        name="DepreciationType"
+                        onChange={handleChange}
+                        value={formData.DepreciationType}
+                    >
+                        <option value="straight-line">Straight-Line Method</option>
+                        <option value="diminishing">Diminishing Value</option>
+                    </select>
+                </div>
+
+                <br/>
                 
                 <label>Depreciation Rate</label>
                 <input 
