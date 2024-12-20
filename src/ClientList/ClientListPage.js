@@ -6,7 +6,6 @@ import { ClientNavbar } from "./ClientNavbar";
 import { EditClient } from "./EditClient";
 
 export const ClientListPage = () => {
-    
     const [active, setActive] = useState("client-form");
     const toggle = (text) => {
         setActive(text);
@@ -83,7 +82,6 @@ export const ClientListPage = () => {
             <ClientNavbar toggle={toggle}/>
 
             {active === "client-form" && <ClientForm addClient={ addClient }/>}
-            {/* {active === "client-invoice" && <InvoiceForm clients={ clients }/>} */}
             {active === "client-edit" && <EditClient clients={ clients } editClient={editClient}/>}
         </div>
     );
