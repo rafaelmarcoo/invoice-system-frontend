@@ -2,10 +2,10 @@ export const PartiallyPaidExpenses = (props) => {
     const partialExpenses = props.expenses.filter(expense => expense.category === "partiallypaid")
 
     return (
-        <div className="gst-expense-table">
+        <div className="table-list">
             <h3>Partially Paid Expenses</h3>
             {partialExpenses.length > 0 ? (
-                <table className="table-list">
+                <table>
                     <thead>
                         <tr>
                             <th>Title</th>

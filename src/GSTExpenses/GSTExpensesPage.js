@@ -60,7 +60,7 @@ export const GSTExpensesPage = () => {
     }
 
     return  (
-        <div className="gst-expenses-page">
+        <div>
             <GSTExpenseForm addExpense={addExpense}/>
 
             <br/><br/>

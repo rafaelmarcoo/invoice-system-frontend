@@ -2,10 +2,10 @@ export const FullyPaidExpenses = (props) => {
     const fullExpenses = props.expenses.filter(expense => expense.category === "fullypaid")
 
     return (
-        <div className="gst-expense-table">
+        <div className="table-list">
             <h3>Fully Paid Expenses</h3>
                 {fullExpenses.length > 0 ? (
-                    <table className="table-list">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Title</th>

@@ -187,10 +187,6 @@ form button:active:before {
   margin-right: auto;
 }
 
-/* .table-list h3 {
-  text-align: center;
-} */
-
 .table-list th, td {
   border: 1.5px solid black;
 }
