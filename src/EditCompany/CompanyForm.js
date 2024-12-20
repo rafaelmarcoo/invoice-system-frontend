@@ -44,9 +44,6 @@ export const CompanyForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        {/*Test*/}
-        console.log(formData);
-
         try {
             const response = await Axios.put("http://localhost:5041/api/company", formData);
 
