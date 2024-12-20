@@ -20,11 +20,11 @@ export const OverdueInvoices = (props) => {
     };
 
     return (
-        <div>
+        <div className="table-list">
             <h3>Overdue Invoices</h3>
 
             {overdueInv.length > 0 ? (
-                <table className="table-list">
+                <table>
                     <thead>
                         <tr>
                             <th>Client Code</th>

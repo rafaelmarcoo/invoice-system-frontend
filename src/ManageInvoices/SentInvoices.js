@@ -18,11 +18,11 @@ export const SentInvoices = (props) => {
     };
 
     return (
-        <div>
+        <div className="table-list">
             <h3>Sent Invoices</h3>
 
             {sentInv.length > 0 ? (
-                <table className="table-list">
+                <table>
                     <thead>
                         <tr>
                             <th>Client Code</th>

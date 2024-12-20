@@ -12,13 +12,13 @@ export const PaidInvoices = (props) => {
         }, {});
 
     return (
-        <div>
+        <div className="table-list">
             <h3>Paid Invoices</h3>
 
             {Object.keys(groupedInv).length > 0 ? (
                 Object.keys(groupedInv).map((companyCode) => (
                     <div key={companyCode}>
-                        <table className="table-list">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Client Code</th>

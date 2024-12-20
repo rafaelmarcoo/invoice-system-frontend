@@ -15,6 +15,10 @@ html {
   align-items:center;
 }
 
+h3 {
+  text-align: center;
+}
+
 /************** Styling from index.css pasted here ****************/
 body {
   margin: 0;
@@ -125,7 +129,7 @@ form input {
 
 form input:focus {
   outline-offset: 3px;
-  background-color: #fff;
+  background-color: var(--tertiary-color);
 }
 
 form button {
@@ -157,7 +161,7 @@ form button:before {
 }
 
 form button:hover {
-  color: #fff;
+  color: var(--tertiary-color);
 }
 
 form button:before {
@@ -178,8 +182,14 @@ form button:active:before {
 
 /************************** Table Styling **************************/
 .table-list table {
-  width: 100%;
+  /* width: 100%; */
+  margin-left: auto;
+  margin-right: auto;
 }
+
+/* .table-list h3 {
+  text-align: center;
+} */
 
 .table-list th, td {
   border: 1.5px solid black;
