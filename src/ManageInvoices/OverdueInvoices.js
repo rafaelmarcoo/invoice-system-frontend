@@ -51,7 +51,7 @@ export const OverdueInvoices = (props) => {
                                 </td>
                             </tr>
                         ))}
-                        <tr>
+                        <tr name="total">
                             <td colSpan="4"><strong>Total</strong></td>
                             <td><strong>${calculateTotAmt()}</strong></td>
                             <td><strong>${calculateTotGST()}</strong></td>

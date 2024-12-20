@@ -203,5 +203,10 @@ form button:active:before {
 
 .table-list tr:nth-child(even) {
   background-color: grey;
-  color:#D4DE95
+  color: var(--tertiary-color)
+}
+
+.table-list tr[name="total"] {
+  background-color: var(--secondary-color);
+  color: var(--tertiary-color);
 }

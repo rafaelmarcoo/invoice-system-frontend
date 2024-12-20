@@ -46,13 +46,14 @@ export const PaidInvoices = (props) => {
                                         </td>
                                     </tr>
                                 ))}
-                                <tr> 
+                                <tr name="total"> 
                                     <td colSpan="5"><strong>Total</strong></td> 
                                     <td><strong>${parseFloat(groupedInv[companyCode].totAmt).toFixed(2)}</strong></td> 
                                     <td><strong>${parseFloat(groupedInv[companyCode].GST).toFixed(2)}</strong></td> 
                                 </tr>
                             </tbody>
                         </table>
+                        <br/>
                     </div>
                 ))
             ) : (
