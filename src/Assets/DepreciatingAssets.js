@@ -30,16 +30,13 @@ export const DepreciatingAssets = (props) => {
     }, [props.assets]);
 
     return (
-        <div className="gst-expense-table">
+        <div>
             {depreciation.length > 0 ? (
                 depreciation.map((asset) => (
-                    <div className="asset-table" key={asset.id}>
-                        <h3>Name: {asset.name} | Date Purchased: {asset.date} | Depreciation Type: {asset.method}</h3>
+                    <div className="table-list" key={asset.id}>
+                        <h3>{asset.name} | Date Purchased: {asset.date} | Depreciation Type: {asset.method}</h3>
                         <table className="table-list">
                             <thead>
-                                {/* <tr colSpan="5">
-                                    <th>Name: {asset.name} Date Purchased: {asset.date} Depreciation Type: {asset.method}</th>
-                                </tr> */}
                                 <tr>
                                     <th>Useful Life (in years)</th>
                                     <th>Original Cost</th>
@@ -52,10 +49,10 @@ export const DepreciatingAssets = (props) => {
                                 {asset.data.map((data) => (
                                     <tr key={data.year}>
                                         <td>Year {data.year}</td>
-                                        <td>${data.originalValue}</td>
+                                        <td>${parseFloat(data.originalValue).toFixed(2)}</td>
                                         <td>{data.depreciationRate}</td>
-                                        <td>${data.depreciationClaimed}</td>
-                                        <td>${data.adjustedTaxValue}</td>
+                                        <td>${parseFloat(data.depreciationClaimed).toFixed(2)}</td>
+                                        <td>${parseFloat(data.adjustedTaxValue).toFixed(2)}</td>
                                     </tr>
                                 ))}
                             </tbody>

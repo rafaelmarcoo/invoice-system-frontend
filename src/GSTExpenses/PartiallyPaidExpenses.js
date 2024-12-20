@@ -23,7 +23,7 @@ export const PartiallyPaidExpenses = (props) => {
                                 <td>{expense.title}</td>
                                 <td>{expense.description}</td>
                                 <td>{expense.date}</td>
-                                <td>${expense.amount}</td>
+                                <td>${parseFloat(expense.amount).toFixed(2)}</td>
                                 <td>{expense.gstRate}</td>
                                 <td>{expense.filePath}</td>
                                 <td>

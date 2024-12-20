@@ -34,7 +34,7 @@ export const AssetsPage = () => {
     };
 
     return(
-        <div className="assets-page">
+        <div>
             <AssetForm addAsset={addAsset}/>
             <br/><br/>
             <DepreciatingAssets assets={assets}/>
