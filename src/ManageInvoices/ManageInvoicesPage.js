@@ -28,7 +28,8 @@ export const ManageInvoicesPage = () => {
 
     const markAsPaid = async (editId) => {
         try {
-            const response = await Axios.put(`http://localhost:5041/api/invoice/${editId}`)
+            const response = await Axios.put(`http://localhost:5041/api/invoice/${editId}`);
+
             retrieveInvoices();
 
             if(response.status === 200) {
@@ -53,7 +54,7 @@ export const ManageInvoicesPage = () => {
 
     const getClientInfo = async (companyCode) => {
         try {
-            const response = await Axios.get(`http://localhost:5041/api/client/${companyCode}`)
+            const response = await Axios.get(`http://localhost:5041/api/client/${companyCode}`);
             return response.data;
         } catch(error) {
             alert("Error: " + error.message);
@@ -62,7 +63,7 @@ export const ManageInvoicesPage = () => {
 
     const getCompanyInfo = async () => {
         try {
-            const response = await Axios.get(`http://localhost:5041/api/company/1`)
+            const response = await Axios.get(`http://localhost:5041/api/company/1`);
             return response.data;
         } catch(error) {
             alert("Error: " + error.message);
@@ -79,7 +80,7 @@ export const ManageInvoicesPage = () => {
     }
 
     return  (
-        <div className="manage-invoices-page">
+        <div>
             <InvoiceForm retrieveInvoices={retrieveInvoices} getClientInfo={getClientInfo} getCompanyInfo={getCompanyInfo} getInvoiceInfo={getInvoiceInfo} handleViewFile={handleViewFile}/>
 
             <br/><br/>

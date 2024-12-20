@@ -12,9 +12,8 @@ export const PaidInvoices = (props) => {
         }, {});
 
     return (
-        <div className="manage-invoices-paid-invoices">
+        <div>
             <h3>Paid Invoices</h3>
-
 
             {Object.keys(groupedInv).length > 0 ? (
                 Object.keys(groupedInv).map((companyCode) => (
@@ -40,8 +39,8 @@ export const PaidInvoices = (props) => {
                                         <td>{invoice.dateSent}</td>
                                         <td>{invoice.dateDue}</td>
                                         <td>{invoice.datePaid}</td>
-                                        <td>${invoice.amount}</td>
-                                        <td>${invoice.gst}</td>
+                                        <td>${parseFloat(invoice.amount).toFixed(2)}</td>
+                                        <td>${parseFloat(invoice.gst).toFixed(2)}</td>
                                         <td>
                                         <button onClick={() => props.handleViewFile(invoice.filePath)}>View Invoice</button>
                                         </td>
@@ -49,8 +48,8 @@ export const PaidInvoices = (props) => {
                                 ))}
                                 <tr> 
                                     <td colSpan="5"><strong>Total</strong></td> 
-                                    <td><strong>${groupedInv[companyCode].totAmt}</strong></td> 
-                                    <td><strong>${groupedInv[companyCode].GST}</strong></td> 
+                                    <td><strong>${parseFloat(groupedInv[companyCode].totAmt).toFixed(2)}</strong></td> 
+                                    <td><strong>${parseFloat(groupedInv[companyCode].GST).toFixed(2)}</strong></td> 
                                 </tr>
                             </tbody>
                         </table>

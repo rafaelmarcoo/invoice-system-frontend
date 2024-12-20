@@ -12,7 +12,7 @@ export const InvoiceForm = (props) => {
         } catch(error) {
             alert("Error: " + error.message);
         }
-    }
+    };
 
     useEffect(() => {
         retrieveClients();
@@ -89,10 +89,13 @@ export const InvoiceForm = (props) => {
         const totAmt = amt * 1.15;
         const gst = totAmt - amt;
 
+        parseFloat(parseFloat(amt).toFixed(2));
+        parseFloat(parseFloat(gst).toFixed(2));
+
         const updatedItems = formData.Items.map((item) => ({
             ...item,
-            Price: parseFloat(item.Price),
-            Quantity: parseFloat(item.Quantity),
+            Price: parseFloat(parseFloat(item.Price).toFixed(2)),
+            Quantity: parseFloat(parseFloat(item.Quantity).toFixed(2)),
         }));
 
         const updatedFormData = {
@@ -103,7 +106,7 @@ export const InvoiceForm = (props) => {
             Amount: totAmt,
             Gst: gst,
             Status: "Sent",
-            FilePath: "-"
+            FilePath: "---"
         };
 
         return updatedFormData;
@@ -129,10 +132,9 @@ export const InvoiceForm = (props) => {
             const response = await Axios.post(`http://localhost:5041/api/invoice/save-pdf/${invoiceInfo.id}`, pdfData);
 
             if(response.status === 200) {
-                alert("Invoice saved into directory!");
-                // props.handleViewFile(`${invoiceInfo.name}-${invoiceInfo.id}.pdf`);
+                alert("Invoice generated and saved into directory!");
             } else {
-                alert("Failed to save invoice into directory!");
+                alert("Failed to generate invoice into directory!");
             }
         } catch (error) {
             alert("Error: " + error.message);
@@ -169,7 +171,7 @@ export const InvoiceForm = (props) => {
 
     return (
         <div>
-            <h3>New Invoice Form</h3>
+            <h3>Invoice Form</h3>
             <form className="form-container" onSubmit={handleSubmit}>
                 <div className="select-dropdown">
                     <label>Client</label>
@@ -215,9 +217,7 @@ export const InvoiceForm = (props) => {
                     name="DateDue"
                     onChange={handleChange}
                     value={formData.DateDue}
-                >
-
-                </input>
+                />
 
                 <br/><br/>
 
