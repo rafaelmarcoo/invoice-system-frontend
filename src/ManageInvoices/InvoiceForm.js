@@ -116,6 +116,11 @@ export const InvoiceForm = (props) => {
         const clientInfo = await props.getClientInfo(formData.Name);
         const companyInfo = await props.getCompanyInfo();
         const invoiceInfo = invoiceDetails;
+        const emailRequest = {
+            To: "testemail437427@gmail.com",
+            Subject: "TEST",
+            Body: "<h3>Test Email</h3><br/><br/><p>It works!</p>",
+        }
 
         const blob = await pdf(
             <GeneratePDF 
@@ -130,6 +135,8 @@ export const InvoiceForm = (props) => {
 
         try {
             const response = await Axios.post(`http://localhost:5041/api/invoice/save-pdf/${invoiceInfo.id}`, pdfData);
+
+            await props.sendEmail(emailRequest);
 
             if(response.status === 200) {
                 alert("Invoice generated and saved into directory!");

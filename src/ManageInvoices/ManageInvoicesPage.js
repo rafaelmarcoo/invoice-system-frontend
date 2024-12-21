@@ -79,16 +79,47 @@ export const ManageInvoicesPage = () => {
         }
     }
 
+    const sendEmail = async (emailRequest) => {
+        try {
+            const response = await Axios.post(`http://localhost:5041/api/email/send-email`, emailRequest);
+
+            if(response.status === 200) {
+                alert("Invoice marked as paid!");
+                retrieveInvoices();
+            } else {
+                alert("Failed to update invoice status!");
+            }
+        } catch(error) {
+            alert("Error: " + error.message);
+        }
+    }
+
     return  (
         <div>
-            <InvoiceForm retrieveInvoices={retrieveInvoices} getClientInfo={getClientInfo} getCompanyInfo={getCompanyInfo} getInvoiceInfo={getInvoiceInfo} handleViewFile={handleViewFile}/>
-
+            <InvoiceForm 
+                retrieveInvoices={retrieveInvoices} 
+                getClientInfo={getClientInfo} 
+                getCompanyInfo={getCompanyInfo} 
+                getInvoiceInfo={getInvoiceInfo} 
+                handleViewFile={handleViewFile}
+                sendEmail={sendEmail}
+            />
             <br/><br/>
             <ManageInvoicesNavbar toggleTable={toggleTable}/>
-
-            {activeTable === "sent" && <SentInvoices invoices={invoices} markAsPaid={markAsPaid} handleViewFile={handleViewFile}/>}
-            {activeTable === "paid" && <PaidInvoices invoices={invoices} handleViewFile={handleViewFile}/>}
-            {activeTable === "overdue" && <OverdueInvoices invoices={invoices} markAsPaid={markAsPaid} handleViewFile={handleViewFile}/>}
+            {activeTable === "sent" && <SentInvoices 
+                                            invoices={invoices} 
+                                            markAsPaid={markAsPaid} 
+                                            handleViewFile={handleViewFile}
+                                        />}
+            {activeTable === "paid" && <PaidInvoices 
+                                            invoices={invoices} 
+                                            handleViewFile={handleViewFile}
+                                        />}
+            {activeTable === "overdue" && <OverdueInvoices 
+                                            invoices={invoices} 
+                                            markAsPaid={markAsPaid} 
+                                            handleViewFile={handleViewFile}
+                                        />}
         </div>
     );
 }
