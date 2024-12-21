@@ -79,15 +79,21 @@ export const ManageInvoicesPage = () => {
         }
     }
 
-    const sendEmail = async (emailRequest) => {
+    const sendEmail = async (emailRequest, file) => {
+        const formData = new FormData();
+        formData.append("To", emailRequest.To);
+        formData.append("Subject", emailRequest.Subject);
+        formData.append("Body", emailRequest.Body);
+        formData.append("File", file.get('pdf'));
+        formData.append("FileName", file.get('pdf').name);
+
         try {
-            const response = await Axios.post(`http://localhost:5041/api/email/send-email`, emailRequest);
+            const response = await Axios.post(`http://localhost:5041/api/email/send-email`, formData);
 
             if(response.status === 200) {
-                alert("Invoice marked as paid!");
-                retrieveInvoices();
+                alert("Email sent with invoice!");
             } else {
-                alert("Failed to update invoice status!");
+                alert("Failed to send email with invoice!");
             }
         } catch(error) {
             alert("Error: " + error.message);
