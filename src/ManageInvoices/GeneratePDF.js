@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
       borderBottomWidth: 2,
       borderBottomColor: '#0077cc',
     },
+    title: {
+      textAlign: 'center',
+      fontWeight: 'bold',
+      marginBottom: 30,
+      fontSize: 30,
+    },
     companyDetails: {
       flex: 1,
       color: '#0077cc'
@@ -89,7 +95,9 @@ export const GeneratePDF = ({ company, client, invoice }) => {
       <Document>
         <Page size="A4" style={styles.page}>
           <Image style={styles.logo} src={logoUrl} />
-
+          <View style={styles.title}>
+            <Text>TAX SUMMARY</Text>
+          </View>
           <View style={styles.header}>
             <View style={styles.companyDetails}>
               <Text>{company.name}</Text>
