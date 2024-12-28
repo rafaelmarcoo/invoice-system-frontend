@@ -222,3 +222,7 @@ form button:active:before {
   display: flex;
   justify-content: space-between;
 }
+
+.data-sheet table {
+ width: 100%;
+}

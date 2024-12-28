@@ -31,7 +31,7 @@ export const TaxSummaryPage = () => {
         var grandTot = 0;
         var totGst = 0;
 
-        invoices.forEach((invoice) => {
+        invoices.map((invoice) => {
             grandTot += invoice.amount;
             totGst += invoice.gst;
         });
@@ -51,14 +51,14 @@ export const TaxSummaryPage = () => {
 
     return  (
         <div>
-            <p>Total Sales: ${finalAmts.TotalSales}</p>
-            <p>Total GST: ${finalAmts.TotalGst}</p>
-            <p>Grand Total: ${finalAmts.GrandTotal}</p>
-
-            {/* <TaxSummaryNavbar setActiveTable={setActiveTable}/>
-
-            {activeTable === "incomeStmt" && <IncomeStatement />}
-            {activeTable === "balance" && <BalanceSheet />} */}
+            <h3>Financial Information</h3>
+            <br/>
+            <h3>Total Sales: ${finalAmts.TotalSales}</h3>
+            <h3>Total GST: ${finalAmts.TotalGst}</h3>
+            <h3>-------------------</h3>
+            <h3>Grand Total: ${finalAmts.GrandTotal}</h3>
+            <br/>
+            <h3>-----------------------------------------------------------------</h3>
 
             <DataSheet />
         </div>
