@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import Axios from 'axios';
-import { TaxSummaryNavbar } from "./TaxSummaryNavbar";
-import { IncomeStatement } from "./IncomeStatement";
-import { BalanceSheet } from "./BalanceSheet";
 import { DataSheet } from "./DataSheet";
 
 export const TaxSummaryPage = () => {
