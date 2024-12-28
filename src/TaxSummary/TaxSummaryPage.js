@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import Axios from 'axios';
+import { TaxSummaryNavbar } from "./TaxSummaryNavbar";
+import { IncomeStatement } from "./IncomeStatement";
+import { BalanceSheet } from "./BalanceSheet";
+import { DataSheet } from "./DataSheet";
 
 export const TaxSummaryPage = () => {
-    const [activeTable, setActiveTable] = useState("balance-sheet");
+    const [activeTable, setActiveTable] = useState("incomeStmt");
     const toggleTable = (text) => {
         setActiveTable(text);
     };
@@ -50,10 +54,16 @@ export const TaxSummaryPage = () => {
 
     return  (
         <div>
-            {/* <button onClick={() => calculateFinalAmts(invoices)}>try</button> */}
-            <p>{finalAmts.TotalSales}</p>
-            <p>{finalAmts.TotalGst}</p>
-            <p>{finalAmts.GrandTotal}</p>
+            <p>Total Sales: ${finalAmts.TotalSales}</p>
+            <p>Total GST: ${finalAmts.TotalGst}</p>
+            <p>Grand Total: ${finalAmts.GrandTotal}</p>
+
+            {/* <TaxSummaryNavbar setActiveTable={setActiveTable}/>
+
+            {activeTable === "incomeStmt" && <IncomeStatement />}
+            {activeTable === "balance" && <BalanceSheet />} */}
+
+            <DataSheet />
         </div>
     );
 }
