@@ -32,9 +32,9 @@ export const GSTExpensesPage = () => {
         formDataToSend.append("Title", formData.Title);
         formDataToSend.append("Description", formData.Description);
         formDataToSend.append("Date", formData.Date);
-        formDataToSend.append("Amount", formData.Amount);
+        formDataToSend.append("Amount", parseFloat(parseFloat(formData.Amount).toFixed(2)));
         formDataToSend.append("Category", formData.Category);
-        formDataToSend.append("GstRate", formData.GstRate);
+        formDataToSend.append("GstRate", parseFloat(parseFloat(formData.GstRate).toFixed(2)));
 
         try {
             const response = await Axios.post("http://localhost:5041/api/expense", formDataToSend);

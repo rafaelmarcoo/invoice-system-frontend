@@ -29,7 +29,14 @@ export const GSTExpenseForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        // setFormData({
+        //     ...formData,
+        //     Amount: parseFloat(parseFloat(formData.Amount).toFixed(2)),
+        //     GstRate: parseFloat(parseFloat(formData.GstRate).toFixed(2)),
+        // });
+
         await props.addExpense(formData);
+
         setFormData({
             Title: "",
             Description: "",
