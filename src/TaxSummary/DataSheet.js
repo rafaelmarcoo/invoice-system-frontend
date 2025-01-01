@@ -1,5 +1,9 @@
 export const DataSheet = (props) => {
     const gstEligExp = props.expenses.filter(expense => expense.gstRate !== 0);
+    var totalGSTPaid = 0;
+    gstEligExp.map((expense) => {
+        totalGSTPaid += (expense.amount * expense.gstRate); 
+    });
 
     return (
         <div>
@@ -40,7 +44,23 @@ export const DataSheet = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-
+                            <tr>
+                                <td>GST Collected From Sales</td>
+                                <td>${parseFloat(props.finalAmts.TotalGst).toFixed(2)}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Minus: GST Paid (Eligible GST Expenses)</td>
+                            </tr>
+                            {gstEligExp.map((expense) => (
+                                <tr>
+                                    <td>{expense.title}</td>
+                                    <td>${parseFloat(expense.amount * expense.gstRate).toFixed(2)}</td>
+                                </tr>
+                            ))}
+                            <tr>
+                                <td>Net GST Owed</td>
+                                <td>${parseFloat(props.finalAmts.TotalGst - totalGSTPaid).toFixed(2)}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
