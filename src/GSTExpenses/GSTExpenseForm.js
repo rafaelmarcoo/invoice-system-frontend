@@ -7,7 +7,7 @@ export const GSTExpenseForm = (props) => {
         Date: "",
         Amount: "",
         File: null,
-        Category: "",
+        Category: "fullypaid",
         GstRate: "",
     });
 
