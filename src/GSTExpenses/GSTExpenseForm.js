@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const GSTExpenseForm = (props) => {
     const [formData, setFormData] = useState({
@@ -10,6 +10,8 @@ export const GSTExpenseForm = (props) => {
         Category: "fullypaid",
         GstRate: "",
     });
+
+    const fileInputRef = useRef(null);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -39,6 +41,10 @@ export const GSTExpenseForm = (props) => {
             Category: "",
             GstRate: "",
         });
+
+        if(fileInputRef.current) {
+            fileInputRef.current.value = null;
+        }
     };
 
     return (
@@ -87,6 +93,7 @@ export const GSTExpenseForm = (props) => {
                     type="file" 
                     name="File"
                     onChange={handleFileChange}
+                    ref={fileInputRef}
                 />
 
                 <label>Date of Expense (Required)</label>
