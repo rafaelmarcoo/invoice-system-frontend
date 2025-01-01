@@ -1,4 +1,6 @@
-export const DataSheet = () => {
+export const DataSheet = (props) => {
+    const gstEligExp = props.expenses.filter(expense => expense.gstRate !== 0);
+
     return (
         <div>
             <div className="data-sheet">
@@ -11,16 +13,21 @@ export const DataSheet = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Revenue</td>
-                                <td>$20000</td>
+                                <td>Net Sales excl. GST</td>
+                                <td>${parseFloat(props.finalAmts.TotalSales).toFixed(2)}</td>
                             </tr>
                             <tr>
-                                <td>Minus: Expenses</td>
-                                <td>$20000</td>
+                                <td colspan="2">Minus: Expenses</td>
                             </tr>
+                            {props.expenses.map((expense) => (
+                                <tr>
+                                    <td>{expense.title}</td>
+                                    <td>${parseFloat(expense.amount).toFixed(2)}</td>
+                                </tr>
+                            ))}
                             <tr>
                                 <td>Net Profit</td>
-                                <td>$0</td>
+                                <td>${props.finalAmts.TotalSales - props.finalAmts.TotalExpenses}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -29,7 +36,7 @@ export const DataSheet = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Balance Sheet</th>
+                                <th colspan="2">GST Calculation</th>
                             </tr>
                         </thead>
                         <tbody>
