@@ -64,15 +64,6 @@ export const TaxSummaryPage = () => {
 
     return  (
         <div>
-            <h3>Financial Information</h3>
-            <br/>
-            <h3>Total Sales: ${finalAmts.TotalSales}</h3>
-            <h3>Total GST: ${finalAmts.TotalGst}</h3>
-            <h3>-------------------</h3>
-            <h3>Grand Total: ${finalAmts.GrandTotal}</h3>
-            <br/>
-            <h3>-----------------------------------------------------------------</h3>
-
             <DataSheet finalAmts={finalAmts} expenses={expenses}/>
         </div>
     );
