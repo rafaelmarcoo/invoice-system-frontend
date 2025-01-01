@@ -9,6 +9,7 @@ export const DataSheet = (props) => {
         <div>
             <h3>Net Profit: ${props.finalAmts.TotalSales - props.finalAmts.TotalExpenses}</h3>
             <h3>Net GST Owed: ${parseFloat(props.finalAmts.TotalGst - totalGSTPaid).toFixed(2)}</h3>
+            <br/>
             <div className="data-sheet">
                 <div className="table-list">
                     <table>

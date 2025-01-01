@@ -64,6 +64,8 @@ export const TaxSummaryPage = () => {
 
     return  (
         <div>
+            <h3>Income and Tax Summary</h3>
+            <br/>
             <DataSheet finalAmts={finalAmts} expenses={expenses}/>
         </div>
     );
