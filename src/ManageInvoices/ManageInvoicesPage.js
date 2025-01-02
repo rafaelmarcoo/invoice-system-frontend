@@ -69,16 +69,7 @@ export const ManageInvoicesPage = () => {
             alert("Error: " + error.message);
         }
     }
-
-    const getInvoiceInfo = async (invoiceId) => {
-        try {
-            const response = await Axios.get(`http://localhost:5041/api/invoice/${invoiceId}`);
-            return response.data;
-        } catch(error) {
-            alert("Error: " + error.message);
-        }
-    }
-
+    
     const sendEmail = async (emailRequest, file) => {
         const formData = new FormData();
         formData.append("To", emailRequest.To);
@@ -106,7 +97,6 @@ export const ManageInvoicesPage = () => {
                 retrieveInvoices={retrieveInvoices} 
                 getClientInfo={getClientInfo} 
                 getCompanyInfo={getCompanyInfo} 
-                getInvoiceInfo={getInvoiceInfo} 
                 handleViewFile={handleViewFile}
                 sendEmail={sendEmail}
             />

@@ -15,7 +15,7 @@ export const DataSheet = (props) => {
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">---- Income Statement ----</th>
+                                <th colSpan="2">---- Income Statement ----</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,10 +24,10 @@ export const DataSheet = (props) => {
                                 <td>${parseFloat(props.finalAmts.TotalSales).toFixed(2)}</td>
                             </tr>
                             <tr>
-                                <td colspan="2">Minus: Expenses</td>
+                                <td colSpan="2">Minus: Expenses</td>
                             </tr>
                             {props.expenses.map((expense) => (
-                                <tr>
+                                <tr key={expense.id}>
                                     <td>{expense.title}</td>
                                     <td>${parseFloat(expense.amount).toFixed(2)}</td>
                                 </tr>
@@ -43,7 +43,7 @@ export const DataSheet = (props) => {
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">GST Calculation</th>
+                                <th colSpan="2">GST Calculation</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,11 +52,11 @@ export const DataSheet = (props) => {
                                 <td>${parseFloat(props.finalAmts.TotalGst).toFixed(2)}</td>
                             </tr>
                             <tr>
-                                <td colspan="2">Minus: GST Paid (Eligible GST Expenses)</td>
+                                <td colSpan="2">Minus: GST Paid (Eligible GST Expenses)</td>
                             </tr>
                             {gstEligExp.map((expense) => (
-                                <tr>
-                                    <td>{expense.title}</td>
+                                <tr key={expense.id}>
+                                    <td>{expense.title}, {expense.gstRate} GST</td>
                                     <td>${parseFloat(expense.amount * expense.gstRate).toFixed(2)}</td>
                                 </tr>
                             ))}
